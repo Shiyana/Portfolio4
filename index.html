@@ -9,12 +9,15 @@
     header, footer { background-color: #1e3799; color: white; text-align: center; padding: 20px; }
     .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
     h1, h2, h3 { color: #1e3799; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; }
     .tabs button { background: #1e3799; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
     .tabs button:hover { background: #60a3bc; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     .charts img { max-width: 45%; margin: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    .links { text-align: center; margin: 20px; }
+    .links a { margin: 0 10px; color: #1e3799; font-weight: bold; text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
   </style>
   <script>
     function showTab(id) {
@@ -32,12 +35,19 @@
     <p>Shiyana Jayanesan Shylaja | Machine Learning Portfolio</p>
   </header>
 
+  <div class="links">
+    <a href="https://shiyana.github.io/Portfolio1/">Artifact 1</a>
+    <a href="https://shiyana.github.io/Portfolio2/">Artifact 2</a>
+    <a href="https://shiyana.github.io/Portfolio3/">Artifact 3</a>
+  </div>
+
   <div class="container">
     <div class="tabs">
       <button onclick="showTab('overview')">Overview</button>
       <button onclick="showTab('process')">Process</button>
       <button onclick="showTab('challenges')">Challenges</button>
       <button onclick="showTab('takeaways')">Key Takeaways</button>
+      <button onclick="showTab('reflection')">Reflection</button>
       <button onclick="showTab('conclusion')">Conclusion</button>
     </div>
 
@@ -75,6 +85,11 @@
         <li>Enhanced visualization techniques for clustering insights.</li>
         <li>Learned to balance preprocessing with interpretability.</li>
       </ul>
+    </div>
+
+    <div class="tab-content" id="reflection">
+      <h2>Reflection</h2>
+      <p>This artifact helped reinforce my understanding of unsupervised learning, particularly in business applications. The clustering model I built offered actionable insights about customer segmentation. One of the most valuable takeaways was learning how the preprocessing decisions—like scaling or handling outliers—can dramatically impact cluster quality. I also gained experience tuning the number of clusters and interpreting visual outputs to inform business decisions.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
