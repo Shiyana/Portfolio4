@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artifact 4: Clustering Analysis with K-Means</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f8fb; color: #333; margin: 0; padding: 0; }
+    header, footer { background-color: #1e3799; color: white; text-align: center; padding: 20px; }
+    .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #1e3799; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .tabs button { background: #1e3799; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    .tabs button:hover { background: #60a3bc; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .charts img { max-width: 45%; margin: 10px; border: 1px solid #ccc; border-radius: 5px; }
+  </style>
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      showTab('overview');
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Artifact 4: Clustering Analysis with K-Means</h1>
+    <p>Shiyana Jayanesan Shylaja | Machine Learning Portfolio</p>
+  </header>
+
+  <div class="container">
+    <div class="tabs">
+      <button onclick="showTab('overview')">Overview</button>
+      <button onclick="showTab('process')">Process</button>
+      <button onclick="showTab('challenges')">Challenges</button>
+      <button onclick="showTab('takeaways')">Key Takeaways</button>
+      <button onclick="showTab('conclusion')">Conclusion</button>
+    </div>
+
+    <div class="tab-content" id="overview">
+      <h2>Overview</h2>
+      <p>This artifact demonstrates how K-Means clustering was applied to segment customer data and discover hidden patterns. It highlights the role of unsupervised learning in business analytics and customer behavior segmentation.</p>
+    </div>
+
+    <div class="tab-content" id="process">
+      <h2>Process</h2>
+      <p>
+        <strong>Step 1:</strong> Cleaned and normalized the dataset.<br>
+        <strong>Step 2:</strong> Used Elbow and Silhouette methods to determine optimal clusters (k=3).<br>
+        <strong>Step 3:</strong> Applied K-Means algorithm and labeled clusters.<br>
+        <strong>Step 4:</strong> Visualized clusters for interpretation.
+      </p>
+      <div class="charts">
+        <img src="elbow-method.png" alt="Elbow Method">
+        <img src="clusters.png" alt="Cluster Visualization">
+      </div>
+    </div>
+
+    <div class="tab-content" id="challenges">
+      <h2>Challenges & Solutions</h2>
+      <ul>
+        <li><strong>Cluster Selection:</strong> Resolved by comparing Elbow and Silhouette scores.</li>
+        <li><strong>Outliers:</strong> Preprocessed data to remove anomalies for better clustering.</li>
+      </ul>
+    </div>
+
+    <div class="tab-content" id="takeaways">
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Developed hands-on skills with unsupervised learning.</li>
+        <li>Enhanced visualization techniques for clustering insights.</li>
+        <li>Learned to balance preprocessing with interpretability.</li>
+      </ul>
+    </div>
+
+    <div class="tab-content" id="conclusion">
+      <h2>Conclusion & Future Work</h2>
+      <p>
+        This project deepened my understanding of clustering algorithms and their value in real-world data scenarios. In the future, I plan to explore hierarchical clustering and integrate results into an interactive business dashboard.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Shiyana Jayanesan Shylaja</p>
+  </footer>
+</body>
+</html>
