@@ -1,11 +1,3 @@
-import os
-
-# Directory for saving the output
-output_dir = "/mnt/data/Portfolio4_Expanded"
-os.makedirs(output_dir, exist_ok=True)
-
-# Start of the HTML content
-html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,80 +5,24 @@ html_content = """
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Artifact 4: Clustering Analysis with K-Means</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f7fa;
-      color: #2d3436;
-      margin: 0;
-      padding: 0;
-    }
-    header, footer {
-      background-color: #0984e3;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    h1, h2 {
-      color: #0984e3;
-    }
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 25px;
-    }
-    .tabs button {
-      background: #0984e3;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .tabs button:hover {
-      background-color: #74b9ff;
-    }
-    .tab-content {
-      display: none;
-      padding: 20px;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    a {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-    ul {
-      margin-left: 20px;
-    }
-    .content-section {
-      margin-bottom: 40px;
-    }
-    .content-section h3 {
-      margin-top: 20px;
-      color: #2d3436;
-    }
+    body { font-family: Arial, sans-serif; background-color: #eef2f3; color: #333; margin: 0; padding: 0; }
+    header, footer { background-color: #004080; color: white; text-align: center; padding: 20px; }
+    .container { max-width: 1100px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #004080; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; }
+    .tabs button { background-color: #004080; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+    .tabs button:hover { background-color: #0066cc; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .charts img, .diagrams img { width: 100%; max-width: 900px; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; }
+    footer a { color: #ffffff; margin: 0 10px; text-decoration: underline; }
   </style>
   <script>
     function showTab(id) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
-    document.addEventListener('DOMContentLoaded', () => {
-      showTab('overview');
-    });
+    window.onload = function() { showTab('overview'); };
   </script>
 </head>
 <body>
@@ -107,47 +43,36 @@ html_content = """
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <div class="content-section">
-        <h3>Project Introduction</h3>
-        <p>This project focuses on unsupervised learning using K-Means clustering applied to a retail customer dataset. The goal was to segment customers into groups based on their income and spending score to enable strategic targeting.</p>
-      </div>
-      <div class="content-section">
-        <h3>Scenario-Based Learning</h3>
-        <ul>
-          <li><strong>Missing Data:</strong> We used multiple imputation and median strategy to address data gaps while ensuring data integrity.</li>
-          <li><strong>Noisy Data:</strong> Outliers and random spikes were smoothed using rolling averages and z-score filtering.</li>
-          <li><strong>Class Imbalance:</strong> Though not directly part of clustering, we explored SMOTE and undersampling techniques during guided exercises.</li>
-        </ul>
-      </div>
-      <div class="content-section">
-        <h3>Ethical Considerations</h3>
-        <p>This activity also allowed for deeper reflection on ethical leadership, fairness in AI, and human bias in dataset composition and model outcomes—topics discussed during the "Navigating Human Bias in AI" class workshop.</p>
+      <p><strong>Note:</strong> Full 2000-word point-wise content with headings will go here.</p>
+      <div class="diagrams">
+        <h3>Overview Flowchart</h3>
+        <img src="A_digital_flowchart_visualizes_a_class_activity_in.png" alt="Class Activity Overview Diagram">
       </div>
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
-      <p>Detailed 2000+ word content will be added here including code walkthroughs, step-by-step decisions, outputs, and intermediate visualizations.</p>
+      <p><strong>Note:</strong> Full 2000-word process explanation with steps, subheadings, and visuals will go here.</p>
     </div>
 
     <div class="tab-content" id="challenges">
       <h2>Challenges</h2>
-      <p>2000-word detailed breakdown including technical issues (e.g., selecting k, scaling), human-centered concerns (bias in clustering), and tools used to overcome these.</p>
+      <p><strong>Note:</strong> Full 2000-word challenges section with real-world examples and code blocks will go here.</p>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
-      <p>This section will have 2000 words of lessons learned, visual summaries, list of concepts applied (e.g., normalization, cluster evaluation metrics), plus charts with annotations.</p>
+      <p><strong>Note:</strong> Full 2000-word insights learned, supported by scenarios and case studies will go here.</p>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>This will include ethical leadership insights, connections to class activities, deeper analysis of AI fairness, and impact on your professional development—expanded to 2000 words with citations.</p>
+      <p><strong>Note:</strong> Full 2000-word personal reflection and leadership analysis will go here.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
-      <h2>Conclusion & Future Work</h2>
-      <p>Final section summarizing impact, outlining roadmap for extending clustering to real-world applications, and proposing integration with supervised learning—expanded to 2000 words, point-wise.</p>
+      <h2>Conclusion & Future Directions</h2>
+      <p><strong>Note:</strong> Full 2000-word conclusion with roadmap, citations, and future ideas will go here.</p>
     </div>
   </div>
 
@@ -161,11 +86,3 @@ html_content = """
   </footer>
 </body>
 </html>
-"""
-
-# Save HTML file
-file_path = os.path.join(output_dir, "index.html")
-with open(file_path, "w") as f:
-    f.write(html_content)
-
-file_path
