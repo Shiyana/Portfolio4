@@ -9,15 +9,12 @@
     header, footer { background-color: #1e3799; color: white; text-align: center; padding: 20px; }
     .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
     h1, h2, h3 { color: #1e3799; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
     .tabs button { background: #1e3799; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
     .tabs button:hover { background: #60a3bc; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .charts img { max-width: 45%; margin: 10px; border: 1px solid #ccc; border-radius: 5px; }
-    .links { text-align: center; margin: 20px; }
-    .links a { margin: 0 10px; color: #1e3799; font-weight: bold; text-decoration: none; }
-    .links a:hover { text-decoration: underline; }
+    .charts img { max-width: 90%; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; }
   </style>
   <script>
     function showTab(id) {
@@ -35,37 +32,37 @@
     <p>Shiyana Jayanesan Shylaja | Machine Learning Portfolio</p>
   </header>
 
-  <div class="links">
-    <a href="https://shiyana.github.io/Portfolio1/">Artifact 1</a>
-    <a href="https://shiyana.github.io/Portfolio2/">Artifact 2</a>
-    <a href="https://shiyana.github.io/Portfolio3/">Artifact 3</a>
-  </div>
-
   <div class="container">
     <div class="tabs">
       <button onclick="showTab('overview')">Overview</button>
       <button onclick="showTab('process')">Process</button>
       <button onclick="showTab('challenges')">Challenges</button>
       <button onclick="showTab('takeaways')">Key Takeaways</button>
-      <button onclick="showTab('reflection')">Reflection</button>
       <button onclick="showTab('conclusion')">Conclusion</button>
     </div>
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p>This artifact demonstrates how K-Means clustering was applied to segment customer data and discover hidden patterns. It highlights the role of unsupervised learning in business analytics and customer behavior segmentation.</p>
+      <p>This artifact demonstrates the application of K-Means clustering to uncover hidden patterns in customer segmentation data. The project emphasizes the power of unsupervised learning techniques in extracting insights from unlabelled data and improving business decision-making processes.</p>
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
       <p>
-        <strong>Step 1:</strong> Cleaned and normalized the dataset.<br>
-        <strong>Step 2:</strong> Used Elbow and Silhouette methods to determine optimal clusters (k=3).<br>
-        <strong>Step 3:</strong> Applied K-Means algorithm and labeled clusters.<br>
-        <strong>Step 4:</strong> Visualized clusters for interpretation.
+        <strong>Step 1:</strong> Data Cleaning – removed null values and normalized numerical columns using MinMaxScaler.<br>
+        <strong>Step 2:</strong> Feature Engineering – selected relevant features including income, spending score, and age.<br>
+        <strong>Step 3:</strong> Determined optimal number of clusters using Elbow and Silhouette methods.<br>
+        <strong>Step 4:</strong> Applied K-Means with k=3 and assigned labels.<br>
+        <strong>Step 5:</strong> Visualized clusters using 2D scatter plots and silhouette graphs.
       </p>
       <div class="charts">
-        <img src="elbow-method.png" alt="Elbow Method">
+        <h3>Elbow Method</h3>
+        <img src="elbow-method.png" alt="Elbow Method Chart">
+
+        <h3>Silhouette Scores</h3>
+        <img src="silhouette.png" alt="Silhouette Score Chart">
+
+        <h3>Cluster Visualization</h3>
         <img src="clusters.png" alt="Cluster Visualization">
       </div>
     </div>
@@ -73,30 +70,25 @@
     <div class="tab-content" id="challenges">
       <h2>Challenges & Solutions</h2>
       <ul>
-        <li><strong>Cluster Selection:</strong> Resolved by comparing Elbow and Silhouette scores.</li>
-        <li><strong>Outliers:</strong> Preprocessed data to remove anomalies for better clustering.</li>
+        <li><strong>Determining k:</strong> Addressed using both Elbow and Silhouette methods to cross-validate cluster quality.</li>
+        <li><strong>Outlier Handling:</strong> Detected and removed outliers to ensure clean separation between clusters.</li>
+        <li><strong>Feature Selection:</strong> Iteratively refined features based on domain relevance and correlation checks.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
       <ul>
-        <li>Developed hands-on skills with unsupervised learning.</li>
-        <li>Enhanced visualization techniques for clustering insights.</li>
-        <li>Learned to balance preprocessing with interpretability.</li>
+        <li>Enhanced practical understanding of unsupervised learning algorithms.</li>
+        <li>Developed skills in cluster evaluation and visualization.</li>
+        <li>Strengthened data preprocessing and feature engineering practices.</li>
+        <li>Learned to interpret and communicate insights from cluster patterns.</li>
       </ul>
-    </div>
-
-    <div class="tab-content" id="reflection">
-      <h2>Reflection</h2>
-      <p>This artifact helped reinforce my understanding of unsupervised learning, particularly in business applications. The clustering model I built offered actionable insights about customer segmentation. One of the most valuable takeaways was learning how the preprocessing decisions—like scaling or handling outliers—can dramatically impact cluster quality. I also gained experience tuning the number of clusters and interpreting visual outputs to inform business decisions.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion & Future Work</h2>
-      <p>
-        This project deepened my understanding of clustering algorithms and their value in real-world data scenarios. In the future, I plan to explore hierarchical clustering and integrate results into an interactive business dashboard.
-      </p>
+      <p>This K-Means clustering project significantly boosted my ability to analyze and segment customer data without labeled outcomes. In future work, I plan to compare K-Means results with other clustering methods like DBSCAN and hierarchical clustering, and integrate findings into a live dashboard with actionable insights.</p>
     </div>
   </div>
 
