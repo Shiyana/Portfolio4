@@ -47,75 +47,72 @@
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p><strong>Project Summary:</strong> This artifact demonstrates a comprehensive clustering analysis using K-Means. It combines technical execution, leadership reflection, and ethical considerations in AI. Throughout the project, I tackled three major scenarios in ML: missing data, noisy data, and class imbalance.</p>
-      <ul>
-        <li><strong>Scenario 1:</strong> Visualized missing data using heatmaps, applied multiple imputations, and evaluated their effect on clustering coherence.</li>
-        <li><strong>Scenario 2:</strong> Compared median filtering and exponential smoothing; validated using residual plots and signal-to-noise ratios.</li>
-        <li><strong>Scenario 3:</strong> Used `imbalanced-learn`’s SMOTE and ADASYN for oversampling; tracked F1 improvements in minority prediction.</li>
-      </ul>
+      <p><strong>Project Summary:</strong> This section introduces a detailed clustering analysis project using the K-Means algorithm, enriched by real-world ML scenarios involving data quality challenges. These challenges included handling missing data through imputation techniques, managing noisy datasets using filtering methods, and resolving class imbalances through resampling strategies. The scenario-based approach mimicked industry use cases and helped me build critical reasoning and preprocessing skills. Ethical AI application was emphasized, reinforcing the significance of fairness in algorithmic outcomes, particularly in education and healthcare. This multi-dimensional focus allowed me to apply classroom concepts to practical environments, preparing me for real-life ML deployment.</p>
       <img src="overview-diagram.png" alt="Overview Diagram">
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
+      <p>This section provides a step-by-step walkthrough of how I executed clustering on a cleaned dataset:</p>
       <ul>
-        <li>Step 1: Loaded data from CSV using `pandas.read_csv()`.</li>
-        <li>Step 2: Cleaned with outlier removal (IQR filtering) and normalization using `StandardScaler`.</li>
-        <li>Step 3: Chose top features based on variance thresholding and correlation matrices.</li>
-        <li>Step 4: Performed PCA for visualization and used Elbow method to determine k=3.</li>
-        <li>Step 5: Trained KMeans, plotted clusters using matplotlib with decision boundaries.</li>
+        <li><strong>Data Cleaning:</strong> Addressed missing values using KNN imputation and dropped high-NA columns.</li>
+        <li><strong>Feature Engineering:</strong> Normalized continuous data, encoded categorical columns, and selected top features via correlation.</li>
+        <li><strong>Dimensionality Reduction:</strong> Applied PCA for 2D visualization and reduced noise using low-variance filtering.</li>
+        <li><strong>Clustering:</strong> Used KMeans (k=3), confirmed optimal k via the Elbow and Silhouette methods.</li>
+        <li><strong>Visualization:</strong> Visualized clusters and centroids in 2D PCA space.</li>
       </ul>
-      <pre class="code">
-from sklearn.impute import KNNImputer
-imputer = KNNImputer(n_neighbors=5)
-data = imputer.fit_transform(raw_data)
-
-from sklearn.decomposition import PCA
-pca = PCA(n_components=2)
-principal_components = pca.fit_transform(scaled_data)
-      </pre>
       <div class="charts">
-        <h3>Elbow Method</h3>
         <img src="elbow-method.png" alt="Elbow Method Chart">
-        <h3>Silhouette Scores</h3>
         <img src="silhouette.png" alt="Silhouette Score Chart">
-        <h3>Cluster Visualization</h3>
         <img src="clusters.png" alt="Cluster Visualization">
       </div>
+      <pre class="code">
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+scaler = StandardScaler()
+data_scaled = scaler.fit_transform(data)
+
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(data_scaled)
+labels = kmeans.labels_
+      </pre>
     </div>
 
     <div class="tab-content" id="challenges">
       <h2>Challenges & Solutions</h2>
       <ul>
-        <li>Encoding: Used one-hot encoding for categorical attributes (e.g., region, gender).</li>
-        <li>Dimensionality: Addressed high-dimensionality using PCA and t-SNE for effective visualization.</li>
-        <li>Bias: Ensured balanced representation by subgroup stratification prior to clustering.</li>
-        <li>Cluster Drift: Validated results through repeated stratified sampling and bootstrapping.</li>
+        <li><strong>Missing Data:</strong> Resolved using a hybrid of mean/mode imputation and KNNImputer based on feature type and correlation with target.</li>
+        <li><strong>Noisy Data:</strong> Detected using Z-score method; applied exponential smoothing to sensor-derived features.</li>
+        <li><strong>Bias:</strong> Cluster interpretation revealed possible demographic bias. Resampled subgroups for fair representation.</li>
+        <li><strong>Scalability:</strong> Addressed memory constraints by using mini-batch KMeans on larger versions of the dataset.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
       <ul>
-        <li>Developed full-stack ML skills including EDA, preprocessing, clustering, and model evaluation.</li>
-        <li>Learned how leadership and ethics directly influence data decisions in AI systems.</li>
-        <li>Practiced scenario-based thinking that simulated consulting or real-time decision-making environments.</li>
-        <li>Reinforced importance of good visuals and storytelling in presenting ML outcomes to stakeholders.</li>
+        <li>Improved my understanding of unsupervised learning workflows and model validation.</li>
+        <li>Built confidence in selecting the right number of clusters and interpreting results with stakeholder needs in mind.</li>
+        <li>Integrated ethical considerations with model design, including fair representation of data groups.</li>
+        <li>Deepened my knowledge of Python libraries like Scikit-Learn, Seaborn, and Matplotlib.</li>
+        <li>Learned how clustering can uncover customer insights, assist marketing strategies, and improve personalization.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>This artifact helped me appreciate the complexity behind unsupervised learning. Working through each real-world data challenge expanded my critical thinking and technical fluency. I saw firsthand how even small data errors can ripple into poor model outcomes, emphasizing the need for clean pipelines and rigorous validation. The chatbot scenarios pushed me to justify each choice in preprocessing and modeling—helping me bridge the gap between textbook knowledge and real-world implementation. More than that, I now view machine learning through an ethical lens—recognizing its power to amplify or challenge biases based on how it's applied.</p>
+      <p>This artifact reinforced the role of preprocessing in influencing ML outcomes. The chatbot-driven class exercises mimicked professional data problem-solving, where I learned to defend every modeling choice. Working through real-world inspired scenarios made me appreciate ethical dilemmas and the importance of model explainability. KMeans clustering pushed me to think critically about data shape, density, and model assumptions, while simultaneously cultivating ethical awareness and technical discipline.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion & Future Directions</h2>
+      <p>In the next phase of this project, I plan to:</p>
       <ul>
-        <li>Benchmark other clustering techniques (DBSCAN, GMM) against KMeans results for performance and interpretability.</li>
-        <li>Integrate fairness auditing tools like AIF360 to assess demographic bias in clustering output.</li>
-        <li>Use clustering to support adaptive learning paths in edtech, tailoring interventions to student personas.</li>
-        <li>Build a GitHub-based walkthrough repo for this artifact to showcase reproducibility and invite peer feedback.</li>
+        <li>Apply DBSCAN and Agglomerative Clustering for comparative insights.</li>
+        <li>Combine clustering with classification models for semi-supervised learning.</li>
+        <li>Introduce explainability tools like SHAP or LIME for feature importance analysis.</li>
+        <li>Use clustering in AI education tools to dynamically adjust student pacing and materials.</li>
       </ul>
     </div>
   </div>
