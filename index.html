@@ -1,28 +1,31 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Artifact 4: Clustering Analysis with K-Means</title>
   <style>
-    body { font-family: Arial, sans-serif; background-color: #eef2f3; color: #333; margin: 0; padding: 0; }
-    header, footer { background-color: #004080; color: white; text-align: center; padding: 20px; }
-    .container { max-width: 1100px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    h1, h2, h3 { color: #004080; }
-    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; }
-    .tabs button { background-color: #004080; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
-    .tabs button:hover { background-color: #0066cc; }
+    body { font-family: Arial, sans-serif; background-color: #f4f8fb; color: #333; margin: 0; padding: 0; }
+    header, footer { background-color: #1e3799; color: white; text-align: center; padding: 20px; }
+    .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #1e3799; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .tabs button { background: #1e3799; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    .tabs button:hover { background: #60a3bc; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .charts img, .diagrams img { width: 100%; max-width: 900px; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; }
-    footer a { color: #ffffff; margin: 0 10px; text-decoration: underline; }
+    .charts img { max-width: 90%; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; }
+    a { color: #ffffff; text-decoration: underline; }
   </style>
   <script>
     function showTab(id) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
-    window.onload = function() { showTab('overview'); };
+    document.addEventListener('DOMContentLoaded', () => {
+      showTab('overview');
+    });
   </script>
 </head>
 <body>
@@ -43,36 +46,61 @@
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p><strong>Note:</strong> Full 2000-word point-wise content with headings will go here.</p>
-      <div class="diagrams">
-        <h3>Overview Flowchart</h3>
-        <img src="A_digital_flowchart_visualizes_a_class_activity_in.png" alt="Class Activity Overview Diagram">
-      </div>
+      <p>This artifact demonstrates my ability to implement and evaluate clustering techniques using the K-Means algorithm in Python. As part of the class activity, I participated in a guided chatbot session addressing three realistic machine learning scenarios: missing data, noisy data, and class imbalance. These exercises helped me understand practical data challenges and how to solve them efficiently using Python and various imputation, smoothing, and resampling techniques.</p>
+      <p>In addition to the technical clustering work, I reflected on how leadership, ethics, and bias are central to the responsible application of AI in real-world domains like healthcare and education. This dual focus—technical implementation and ethical consideration—has helped me better appreciate my role as a future AI practitioner and leader.</p>
+      <p>By integrating these classroom learnings with this project, I not only practiced unsupervised learning, but also developed soft skills such as problem-solving, decision-making under uncertainty, and recognizing potential bias in model outcomes.</p>
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
-      <p><strong>Note:</strong> Full 2000-word process explanation with steps, subheadings, and visuals will go here.</p>
+      <p>
+        <strong>Step 1:</strong> Loaded and cleaned the dataset, handling missing values and scaling numerical features.<br>
+        <strong>Step 2:</strong> Explored relationships between variables (e.g., income and spending behavior).<br>
+        <strong>Step 3:</strong> Used Elbow and Silhouette methods to determine the optimal number of clusters (k).<br>
+        <strong>Step 4:</strong> Applied K-Means clustering using scikit-learn with k=3.<br>
+        <strong>Step 5:</strong> Visualized and interpreted clustering results to segment customer groups.
+      </p>
+      <div class="charts">
+        <h3>Elbow Method</h3>
+        <img src="elbow-method.png" alt="Elbow Method Chart">
+
+        <h3>Silhouette Scores</h3>
+        <img src="silhouette.png" alt="Silhouette Score Chart">
+
+        <h3>Cluster Visualization</h3>
+        <img src="clusters.png" alt="Cluster Visualization">
+      </div>
     </div>
 
     <div class="tab-content" id="challenges">
-      <h2>Challenges</h2>
-      <p><strong>Note:</strong> Full 2000-word challenges section with real-world examples and code blocks will go here.</p>
+      <h2>Challenges & Solutions</h2>
+      <ul>
+        <li><strong>Unclear cluster boundaries:</strong> Mitigated by trying multiple values of k and using Silhouette Score for validation.</li>
+        <li><strong>Presence of outliers:</strong> Used statistical filtering with IQR and z-scores before training.</li>
+        <li><strong>Interpretability of clusters:</strong> Examined feature means per cluster and created labels accordingly (e.g., High Income-Low Spend group).</li>
+      </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
-      <p><strong>Note:</strong> Full 2000-word insights learned, supported by scenarios and case studies will go here.</p>
+      <ul>
+        <li>Learned how to apply unsupervised learning for real-world segmentation tasks.</li>
+        <li>Practiced evaluating clustering performance using visual and numeric methods.</li>
+        <li>Understood how preprocessing affects cluster quality.</li>
+        <li>Gained practical experience on real-world problems like missing, noisy, and imbalanced data through guided chatbot scenarios.</li>
+        <li>Connected machine learning work to human-centered leadership values like fairness and inclusivity.</li>
+      </ul>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p><strong>Note:</strong> Full 2000-word personal reflection and leadership analysis will go here.</p>
+      <p>Through this assignment, I became more confident working with unsupervised learning, especially clustering methods. The class chatbot activity gave me a space to explore data imperfections and reflect on problem-solving strategies. I realized the importance of choosing the right evaluation metric, especially when interpreting clusters or training models with imbalanced data.</p>
+      <p>I also learned that being a responsible AI leader means thinking beyond the model's performance—understanding how models affect people and how fairness and transparency must be built into our systems from the ground up. This exercise helped bridge the gap between technical work and ethical implementation.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
-      <h2>Conclusion & Future Directions</h2>
-      <p><strong>Note:</strong> Full 2000-word conclusion with roadmap, citations, and future ideas will go here.</p>
+      <h2>Conclusion & Future Work</h2>
+      <p>Looking ahead, I plan to extend this project by comparing K-Means with alternative algorithms like DBSCAN and hierarchical clustering. I am also interested in applying dimensionality reduction methods like PCA before clustering to improve model performance and interpretability. My long-term goal is to use these techniques in customer segmentation and behavioral targeting tasks in real-world business contexts.</p>
     </div>
   </div>
 
@@ -85,4 +113,4 @@
     </p>
   </footer>
 </body>
-</html>
+</html> use this code, please write more explantions one page as 700 words , scenarios step by step all the tabs shoule have more explanation
