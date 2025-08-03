@@ -46,32 +46,66 @@
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p>Coming soon: expanded overview scenario with visuals and citations.</p>
+      <p>This section contains a comprehensive breakdown of how unsupervised learning, specifically K-Means clustering, was applied to real-world datasets in a classroom setting. It integrates experiences from three chatbot-guided scenarios: handling missing data, filtering noisy signals, and resolving class imbalance. Each scenario is explored in depth, supported with statistical insights and ethical considerations relevant to AI applications in education and healthcare.</p>
+      <img src="overview-diagram.png" alt="Overview Diagram">
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
-      <p>Coming soon: full implementation steps with Python code and diagrams.</p>
+      <p>The process began with data ingestion and preprocessing, followed by detailed analysis using the K-Means algorithm in Python. Each phase is presented with code snippets and graphs:</p>
+      <pre class="code"># StandardScaler and KMeans in action
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+import pandas as pd
+
+# Load data
+df = pd.read_csv('data.csv')
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(df)
+
+# Apply KMeans
+kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans.fit(scaled_data)
+df['Cluster'] = kmeans.labels_</pre>
+      <div class="charts">
+        <h3>Elbow Method</h3>
+        <img src="elbow-method.png" alt="Elbow Method Chart">
+        <h3>Silhouette Scores</h3>
+        <img src="silhouette.png" alt="Silhouette Score Chart">
+        <h3>Cluster Visualization</h3>
+        <img src="clusters.png" alt="Cluster Visualization">
+      </div>
     </div>
 
     <div class="tab-content" id="challenges">
       <h2>Challenges & Solutions</h2>
-      <p>Coming soon: expanded challenges with visuals, outputs, and references.</p>
+      <p>Each challenge faced in the data pipeline was methodically addressed:</p>
+      <ul>
+        <li><strong>Missing Data:</strong> Used mean/median imputation and KNNImputer depending on feature correlation.</li>
+        <li><strong>Noisy Data:</strong> Smoothing via rolling averages and noise reduction using filtering methods like Savitzky-Golay.</li>
+        <li><strong>Class Imbalance:</strong> Utilized SMOTE to generate synthetic samples and balanced the dataset.</li>
+        <li><strong>Interpretability:</strong> Used cluster center coordinates and visualization tools to interpret each group meaningfully.</li>
+      </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
-      <p>Coming soon: strategic lessons with citations and scenario references.</p>
+      <ul>
+        <li>Mastery over K-Means clustering, visualization, and evaluation methods such as Elbow and Silhouette.</li>
+        <li>Importance of data cleaning and understanding its downstream impact.</li>
+        <li>Learned how ethical principles intersect with algorithmic design, especially in education and healthcare datasets.</li>
+        <li>Acquired hands-on experience through chatbot-driven scenarios that mimic real-world ambiguity and complexity.</li>
+      </ul>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>Coming soon: deeper reflections and leadership insights.</p>
+      <p>This artifact taught me how to think critically when applying unsupervised learning. I realized that clean code isn't enough—context, interpretability, and responsible use matter deeply. The chatbot-driven exercises offered a simulated but engaging approach to think through potential missteps and reinforce solutions practically. Overall, the experience solidified both technical fluency and ethical responsibility in my approach to machine learning.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion & Future Directions</h2>
-      <p>Coming soon: research expansion plans and AI portfolio roadmap.</p>
+      <p>Future work includes exploring DBSCAN for non-linear cluster shapes, applying PCA for dimensionality reduction, and evaluating cluster robustness using Davies-Bouldin Index. I aim to integrate these skills in real-life education tech solutions, ensuring not just functional models, but equitable and explainable systems aligned with institutional goals.</p>
     </div>
   </div>
 
