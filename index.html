@@ -45,19 +45,19 @@
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p>This artifact represents my hands-on experience with unsupervised learning through a K-Means clustering project. In parallel, I participated in a classroom chatbot scenario activity that further enhanced my understanding of data quality challenges in machine learning.</p>
-      <p>During the chatbot activity, I tackled three scenarios: handling missing data in health records, cleaning noisy sensor readings, and resolving class imbalance in rare disease detection. This exercise improved my ability to choose the right preprocessing techniques, evaluate models effectively, and reflect critically on practical decisions. These discussions solidified my confidence in applying AI/ML tools for real-world problems.</p>
-      <p>The clustering project and the chatbot experience together demonstrate my ability to integrate theoretical knowledge with practical applications in AI/ML.</p>
+      <p>This artifact showcases my hands-on application of clustering techniques using the K-Means algorithm. Alongside, I engaged in a multi-scenario chatbot activity involving real-world data issues like missing values, noisy data, and class imbalance.</p>
+      <p>The activity helped solidify my ability to analyze, clean, and model data under different conditions. It required critical thinking, the application of proper imputation and noise reduction methods, and strategies like SMOTE and evaluation metrics (F1-score, AUC) for imbalanced datasets.</p>
+      <p>This combined learning experience demonstrates both technical proficiency and reflective practice across the Machine Learning Fundamentals course.</p>
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
       <p>
-        <strong>Step 1:</strong> Data Cleaning – removed null values and normalized numerical columns using MinMaxScaler.<br>
-        <strong>Step 2:</strong> Feature Engineering – selected relevant features including income, spending score, and age.<br>
-        <strong>Step 3:</strong> Determined optimal number of clusters using Elbow and Silhouette methods.<br>
-        <strong>Step 4:</strong> Applied K-Means with k=3 and assigned labels.<br>
-        <strong>Step 5:</strong> Visualized clusters using 2D scatter plots and silhouette graphs.
+        <strong>Step 1:</strong> Cleaned missing values and scaled numerical features.<br>
+        <strong>Step 2:</strong> Explored features like income and spending behavior.<br>
+        <strong>Step 3:</strong> Used Elbow and Silhouette methods to determine optimal clusters.<br>
+        <strong>Step 4:</strong> Performed K-Means clustering with k=3.<br>
+        <strong>Step 5:</strong> Created visualizations to evaluate segmentation quality.
       </p>
       <div class="charts">
         <h3>Elbow Method</h3>
@@ -74,32 +74,31 @@
     <div class="tab-content" id="challenges">
       <h2>Challenges & Solutions</h2>
       <ul>
-        <li><strong>Determining k:</strong> Addressed using both Elbow and Silhouette methods to cross-validate cluster quality.</li>
-        <li><strong>Outlier Handling:</strong> Detected and removed outliers to ensure clean separation between clusters.</li>
-        <li><strong>Feature Selection:</strong> Iteratively refined features based on domain relevance and correlation checks.</li>
+        <li><strong>Unclear clustering patterns:</strong> Mitigated with multiple evaluation metrics.</li>
+        <li><strong>Outliers:</strong> Filtered prior to training using IQR and Z-score methods.</li>
+        <li><strong>Cluster interpretation:</strong> Used feature distributions to label clusters meaningfully.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
       <ul>
-        <li>Enhanced practical understanding of unsupervised learning algorithms.</li>
-        <li>Developed skills in cluster evaluation and visualization.</li>
-        <li>Strengthened data preprocessing and feature engineering practices.</li>
-        <li>Learned to interpret and communicate insights from cluster patterns.</li>
-        <li>Gained real-world exposure through scenario-based chatbot activities in class.</li>
+        <li>Learned to apply clustering to real customer segmentation problems.</li>
+        <li>Developed skills to validate unsupervised learning outcomes.</li>
+        <li>Explored SMOTE and outlier techniques in the chatbot assignment.</li>
+        <li>Improved confidence working with raw, incomplete, and noisy data.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>This course has provided a solid foundation in handling real-world machine learning challenges. I worked on three challenging scenarios: missing data, noisy data, and imbalanced datasets. From these exercises, I learned to clean and process complex data, apply practical algorithms like K-Means, and evaluate model performance beyond just accuracy.</p>
-      <p>In my future career, I will use imputation strategies to deal with incomplete records, apply smoothing techniques and outlier detection to sensor data, and utilize advanced resampling methods like SMOTE in healthcare-related ML problems. This hands-on experience, combined with reflective learning, has improved my confidence and problem-solving ability significantly.</p>
+      <p>This project helped me develop an integrated understanding of unsupervised learning and real-world data cleaning. It made me aware of how preprocessing affects downstream analysis, model robustness, and fairness.</p>
+      <p>The chatbot activity taught me to think critically about model assumptions, how to prevent bias, and how to approach data limitations systematically. I now feel ready to explore clustering in industry settings and combine it with customer behavior insights.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion & Future Work</h2>
-      <p>This K-Means clustering project significantly boosted my ability to analyze and segment customer data without labeled outcomes. In future work, I plan to compare K-Means results with other clustering methods like DBSCAN and hierarchical clustering, and integrate findings into a live dashboard with actionable insights.</p>
+      <p>I plan to compare K-Means with hierarchical and DBSCAN clustering. I'd also like to experiment with dimensionality reduction using PCA and t-SNE before clustering to gain deeper insights from complex datasets.</p>
     </div>
   </div>
 
@@ -107,7 +106,8 @@
     <p>&copy; 2025 Shiyana Jayanesan Shylaja | 
       <a href="https://shiyana.github.io/Portfolio1/">Artifact 1</a> |
       <a href="https://shiyana.github.io/Portfolio2/">Artifact 2</a> |
-      <a href="https://shiyana.github.io/Portfolio3/">Artifact 3</a>
+      <a href="https://shiyana.github.io/Portfolio3/">Artifact 3</a> |
+      <a href="https://shiyana.github.io/Portfolio4/">Artifact 4</a>
     </p>
   </footer>
 </body>
