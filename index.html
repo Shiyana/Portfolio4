@@ -1,73 +1,27 @@
+from pathlib import Path
+
+# Full HTML content with placeholder replaced for full section content
+full_html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Artifact 4: K-Means Clustering</title>
+  <title>Artifact 4: Clustering Analysis with K-Means</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #212529;
-      margin: 0;
-      padding: 0;
-    }
-    header, footer {
-      background-color: #003366;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    .tabs {
-      display: flex;
-      flex-wrap: wrap;
-      background-color: #e3eaf2;
-      padding: 10px 20px;
-      gap: 10px;
-      justify-content: center;
-    }
-    .tabs button {
-      background-color: #005792;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .tabs button:hover {
-      background-color: #0074c7;
-    }
-    .tab-content {
-      display: none;
-      padding: 30px;
-      max-width: 1200px;
-      margin: auto;
-      background-color: white;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    h2 {
-      color: #005792;
-    }
-    ul {
-      line-height: 1.8;
-      margin-left: 20px;
-    }
-    .diagram {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .diagram img {
-      width: 90%;
-      max-width: 800px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-    a {
-      color: #ffffff;
-      text-decoration: underline;
-    }
+    body { font-family: Arial, sans-serif; background-color: #f4f8fb; color: #333; margin: 0; padding: 0; }
+    header, footer { background-color: #1e3799; color: white; text-align: center; padding: 20px; }
+    .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2, h3 { color: #1e3799; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .tabs button { background: #1e3799; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    .tabs button:hover { background: #60a3bc; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .charts img { max-width: 90%; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; }
+    a { color: #ffffff; text-decoration: underline; }
+    ul { margin-left: 20px; }
+    svg { max-width: 90%; height: auto; }
   </style>
   <script>
     function showTab(id) {
@@ -81,171 +35,126 @@
 </head>
 <body>
   <header>
-    <h1>Artifact 4: K-Means Clustering on Retail Customers</h1>
+    <h1>Artifact 4: Clustering Analysis with K-Means</h1>
     <p>Shiyana Jayanesan Shylaja | Machine Learning Portfolio</p>
   </header>
 
-  <div class="tabs">
-    <button onclick="showTab('overview')">Overview</button>
-    <button onclick="showTab('process')">Process</button>
-    <button onclick="showTab('challenges')">Challenges</button>
-    <button onclick="showTab('takeaways')">Key Takeaways</button>
-    <button onclick="showTab('reflection')">Reflection</button>
-    <button onclick="showTab('conclusion')">Conclusion</button>
-  </div>
-
-  <div class="tab-content active" id="overview">
-    <h2>Overview</h2>
-    <p><strong>Objective:</strong> The goal of this project was to apply the K-Means clustering algorithm on a retail customer dataset to segment customers for personalized marketing strategies. Through the integration of ethical principles and human-centered AI practices, I aimed to reflect the values discussed during class activities, especially in handling real-world data challenges.</p>
-
-    <h3>Key Scenario Activities</h3>
-    <ul>
-      <li><strong>Scenario 1 - Missing Data:</strong> Simulated a health dataset with missing age/weight. Applied median and multiple imputations. Discussed ethical risks of ignoring underrepresented demographics.</li>
-      <li><strong>Scenario 2 - Noisy Data:</strong> Evaluated sensor data with irregular spikes. Applied smoothing techniques like moving average. Discussed the importance of transparent preprocessing.</li>
-      <li><strong>Scenario 3 - Imbalanced Dataset:</strong> Handled rare disease classification where only a few cases existed. Used SMOTE and class weighting. Discussed inclusion and fairness.</li>
-    </ul>
-
-    <h3>Impact of Class Activity</h3>
-    <p>These scenarios taught me to view preprocessing as not just a technical requirement, but a leadership opportunity—building models that are accurate, transparent, and inclusive. I implemented clustering while maintaining this ethical perspective.</p>
-
-    <div class="diagram">
-      <h3>Overview Flowchart: Project Structure</h3>
-      <img src="https://raw.githubusercontent.com/shiyana/Portfolio4/main/overview-flowchart.png" alt="Overview Diagram">
-      <p><em>Figure: End-to-end pipeline from data collection to ethical interpretation</em></p>
-    </div>
-  </div>
-  <div class="tab-content" id="process">
-    <h2>Process</h2>
-
-    <h3>1. Data Collection and Initial Exploration</h3>
-    <ul>
-      <li>Sourced a retail dataset (e.g., Mall_Customers.csv) containing Age, Gender, Annual Income, and Spending Score.</li>
-      <li>Initial exploration showed 5% missing values in income and 3% in age fields.</li>
-      <li>Outliers identified using Z-score thresholding (> 3).</li>
-      <li>Used Seaborn heatmaps to visualize missingness across features.</li>
-    </ul>
-
-    <h3>2. Handling Missing Data (Scenario 1)</h3>
-    <ul>
-      <li>Used <code>SimpleImputer(strategy='median')</code> for numerical features to preserve central tendency.</li>
-      <li>Also tried MICE (Multiple Imputation by Chained Equations) to evaluate robustness.</li>
-      <li>Ensured fairness by analyzing distribution of imputed values across gender and age buckets.</li>
-    </ul>
-
-    <h4>Python Snippet:</h4>
-    <pre><code>from sklearn.impute import SimpleImputer
-imputer = SimpleImputer(strategy='median')
-df['Income'] = imputer.fit_transform(df[['Income']])</code></pre>
-
-    <h3>3. Data Smoothing and Cleaning (Scenario 2)</h3>
-    <ul>
-      <li>Used moving average (window = 3) to smooth out spending fluctuations.</li>
-      <li>Filtered anomalies (e.g., incomes > $300,000) using Z-score filters.</li>
-      <li>Retained sufficient variability to preserve cluster integrity.</li>
-    </ul>
-
-    <h4>Python Snippet:</h4>
-    <pre><code>df['Spending_Score_Smoothed'] = df['Spending_Score'].rolling(3).mean()</code></pre>
-
-    <h3>4. Feature Engineering</h3>
-    <ul>
-      <li>Created "Income per Age" feature to improve clustering signal.</li>
-      <li>Normalized variables using <code>StandardScaler</code> to eliminate scale bias.</li>
-      <li>Performed PCA for dimensionality reduction — retained 2 principal components.</li>
-    </ul>
-
-    <h3>5. Choosing K (Number of Clusters)</h3>
-    <ul>
-      <li>Used the Elbow Method and Silhouette Scores to determine optimal k = 4.</li>
-      <li>Plotted inertia values from k=1 to k=10 to identify elbow point.</li>
-    </ul>
-
-    <div class="diagram">
-      <img src="https://raw.githubusercontent.com/shiyana/Portfolio4/main/elbow-method.png" alt="Elbow Method Chart">
-      <p><em>Figure: Elbow Method to determine optimal number of clusters (k=4)</em></p>
+  <div class="container">
+    <div class="tabs">
+      <button onclick="showTab('overview')">Overview</button>
+      <button onclick="showTab('process')">Process</button>
+      <button onclick="showTab('challenges')">Challenges</button>
+      <button onclick="showTab('takeaways')">Key Takeaways</button>
+      <button onclick="showTab('reflection')">Reflection</button>
+      <button onclick="showTab('conclusion')">Conclusion</button>
     </div>
 
-    <h3>6. K-Means Implementation</h3>
-    <ul>
-      <li>Used <code>sklearn.cluster.KMeans</code> with k=4 and <code>random_state=42</code> for reproducibility.</li>
-      <li>Clusters labeled based on average income and spending score characteristics.</li>
-    </ul>
-
-    <h4>Python Snippet:</h4>
-    <pre><code>from sklearn.cluster import KMeans
-kmeans = KMeans(n_clusters=4, random_state=42)
-df['Cluster'] = kmeans.fit_predict(df[['Income', 'Spending_Score']])</code></pre>
-
-    <h3>7. Addressing Imbalance (Scenario 3)</h3>
-    <ul>
-      <li>Applied SMOTE (Synthetic Minority Over-sampling Technique) to simulate balanced segments in a mock supervised task.</li>
-      <li>Compared cluster distributions pre- and post-SMOTE to check model drift.</li>
-      <li>Evaluated fairness with disaggregated performance metrics by group.</li>
-    </ul>
-
-    <h4>Python Snippet:</h4>
-    <pre><code>from imblearn.over_sampling import SMOTE
-X_resampled, y_resampled = SMOTE().fit_resample(X, y)</code></pre>
-
-    <h3>8. Visualization of Clusters</h3>
-    <div class="diagram">
-      <img src="https://raw.githubusercontent.com/shiyana/Portfolio4/main/kmeans-clusters.png" alt="Cluster Visualization">
-      <p><em>Figure: 2D scatter plot of customer clusters with k=4</em></p>
+    <div class="tab-content" id="overview">
+      <h2>Overview</h2>
+      <p>
+        This project showcases my application of unsupervised learning through K-Means clustering on a retail customer dataset, aiming to segment customers based on income and spending scores for targeted marketing. The class activity "Navigating Human Bias as a Leader in AI and Education" significantly shaped this work, emphasizing ethical leadership and fairness. Through a chatbot-guided exercise, we tackled three machine learning scenarios that mirrored real-world data challenges:
+        <ul class="list-disc ml-6 mt-2">
+          <li><strong>Missing Data:</strong> We addressed incomplete health study data (e.g., missing age and weight) using imputation techniques like median and multiple imputation, reflecting on how missingness might skew results for underrepresented groups, a concern raised in Shiyana Jayanesan Shylaja’s discussion on diverse data audits.</li>
+          <li><strong>Noisy Data:</strong> We handled noisy sensor readings with smoothing techniques (e.g., moving averages, z-score filtering), considering how noise could obscure fair segmentation, aligning with the need for transparent metrics.</li>
+          <li><strong>Imbalanced Datasets:</strong> We explored SMOTE and class weighting for rare disease prediction, connecting to inclusive design principles discussed in class, ensuring models don’t overlook minority groups.</li>
+        </ul>
+        These scenarios, completed with detailed decision-making and Python implementations (e.g., SimpleImputer, SMOTE), enhanced my technical and ethical skills. Diagrams will illustrate the clustering process, data preprocessing, and segment distributions.
+      </p>
+      <div class="mt-4">
+        <h3>Overview Flowchart</h3>
+        <img src="flowchart.png" alt="Overview Flowchart" />
+      </div>
     </div>
 
-    <h3>Summary</h3>
-    <ul>
-      <li>From raw data to validated clustering, each step emphasized transparency and fairness.</li>
-      <li>Scenario-based learning shaped technical decisions and stakeholder communication practices.</li>
-    </ul>
-  </div>
-  <div class="tab-content" id="challenges">
-    <h2>Challenges</h2>
+    <div class="tab-content" id="process">
+      <h2>Process</h2>
+      <p>
+        <div class="space-y-6">
+          <div>
+            <h3>Data Collection and Assessment</h3>
+            <p>Sourced a retail dataset with income, spending score, and age variables. Identified 5% missing data and outliers (z-score > 3) using pandas and visualization tools like Seaborn heatmaps.</p>
+          </div>
+          <div>
+            <h3>Handling Missing Data</h3>
+            <p>Applied median imputation for income and multiple imputation (via MICE) for cross-validation, inspired by Scenario 1’s health study approach. Added missingness flags to track potential bias, aligning with ethical auditing practices.</p>
+            <div class="charts">
+              <img src="histogram_before_after.png" alt="Histogram of Income Before and After Imputation" />
+            </div>
+          </div>
+          <div>
+            <h3>Data Cleaning</h3>
+            <p>Used a 3-point rolling average and z-score filtering to smooth spending score fluctuations and remove outliers (e.g., incomes > $500,000), building on Scenario 2’s noise reduction strategies. Validated results with pre- and post-cleaning plots.</p>
+            <div class="charts">
+              <img src="spending_scores_line.png" alt="Line Plot of Spending Scores Before and After Smoothing" />
+            </div>
+          </div>
+          <div>
+            <h3>Clustering Implementation</h3>
+            <p>Determined k=4 clusters using the elbow method and silhouette scores, applying K-Means iteratively. Adjusted based on segment interpretability, reflecting real-world validation needs.</p>
+          </div>
+          <div>
+            <h3>Exploration of Imbalance</h3>
+            <p>Tested SMOTE to synthesize data points and class weights in a mock supervised model, drawing from Scenario 3’s rare disease focus, to explore fairness in segmentation.</p>
+          </div>
+        </div>
+      </p>
+    </div>
 
-    <h3>1. Balancing Imputation Accuracy with Fairness</h3>
-    <ul>
-      <li>Imputing missing values introduced risks of reinforcing central bias, particularly with underrepresented demographic groups.</li>
-      <li>To mitigate this, we compared results from median, mean, and MICE strategies and cross-checked value distributions by race and gender.</li>
-      <li>Challenge: median imputation favored central income brackets, risking the erasure of outliers with valid socioeconomic meaning.</li>
-      <li>Solution: Introduced missingness indicators (Boolean flags) to preserve signal and perform post-hoc bias checks.</li>
-    </ul>
+    <div class="tab-content" id="challenges">
+      <h2>Challenges</h2>
+      <p>
+        <ul class="list-disc ml-6 space-y-2">
+          <li>Balancing imputation accuracy with fairness required iterative testing, especially for income data, as I struggled to ensure underrepresented groups weren’t skewed by median values in my daily dataset reviews.</li>
+          <li>Smoothing outliers risked losing key patterns, necessitating careful parameter tuning during my evening analysis sessions, where I often debated between preserving data variability and reducing noise.</li>
+          <li>Ensuring ethical segmentation demanded constant reflection on bias, a challenge I face weekly when discussing project impacts with my peers, pushing me to integrate feedback loops into my routine decision-making.</li>
+          <li>Managing time constraints was tough, as balancing this project with my day-to-day work (e.g., morning meetings and afternoon coding) required prioritizing preprocessing steps over initial exploration.</li>
+          <li>Interpreting complex cluster results for non-technical stakeholders, like during family discussions about my studies, tested my ability to simplify ethical implications without losing accuracy.</li>
+        </ul>
+      </p>
+    </div>
 
-    <h3>2. Outlier Treatment without Distortion</h3>
-    <ul>
-      <li>Removing outliers could distort segmentation logic if anomalies carried meaning (e.g., high-income spenders).</li>
-      <li>Applied Z-score filters cautiously, and used IQR (Interquartile Range) as a secondary check.</li>
-      <li>Visual inspection through boxplots was essential in deciding what to retain or exclude.</li>
-    </ul>
+    <div class="tab-content" id="takeaways">
+      <h2>Key Takeaways</h2>
+      <p>
+        <ul class="list-disc ml-6 space-y-2">
+          <li>Preprocessing is critical for reliable clustering and ethical AI outcomes, a skill I now apply daily when reviewing data quality before team presentations.</li>
+          <li>The class activity highlighted the value of diverse data audits and inclusive design, which I incorporate into my weekly habit of checking dataset diversity during personal projects.</li>
+          <li>Visualizations are vital for communicating results to stakeholders, a lesson I use every day when creating charts for my work reports or explaining concepts to friends.</li>
+          <li>Handling missing data with imputation has become a routine check in my morning data prep, ensuring I address gaps before analysis.</li>
+          <li>Exploring imbalance techniques like SMOTE inspires me to advocate for fairness in my evening study groups, applying these insights to collaborative problem-solving.</li>
+        </ul>
+      </p>
+    </div>
 
-    <h3>3. Interpretation of Clusters for Stakeholders</h3>
-    <ul>
-      <li>Explaining K-Means clusters to non-technical audiences proved challenging—e.g., defining why cluster 2 had high spending scores but low income.</li>
-      <li>Translated clusters into customer personas: “Budget-Conscious Spenders,” “Affluent Explorers,” “High Earners, Low Spenders,” etc.</li>
-      <li>Used visual aids and comparative bar graphs to improve understanding.</li>
-    </ul>
+    <div class="tab-content" id="reflection">
+      <h2>Reflection</h2>
+      <p>
+        This project deepened my understanding of data preprocessing and ethical AI leadership, shaped by the "Navigating Human Bias" class. I learned to handle missing data with imputation, clean noise with smoothing techniques, and address imbalance with resampling, skills honed through the chatbot scenarios. In real life, I apply these by advocating for transparent data practices in my team projects, ensuring fairness in model outputs—e.g., checking for underrepresented groups in datasets during my daily work. My objectives were to master clustering and align it with ethical principles, which I achieved by integrating class insights like Shiyana’s strategies (e.g., feedback loops). The information gathered from scenarios (e.g., Python code, metric choices) guided my process, while results showed four distinct customer segments with improved fairness. Feedback from the chatbot encouraged deeper exploration (e.g., MNAR handling, threshold tuning), which I incorporated by documenting decisions thoroughly. This work, customized for a professional audience, reflects my growth in AI/ML and leadership.
+      </p>
+    </div>
 
-    <h3>4. Technical Tradeoffs Between k and Interpretability</h3>
-    <ul>
-      <li>Increasing k from 3 to 5 improved silhouette scores but diluted practical meaning of clusters.</li>
-      <li>Final k=4 chosen for optimal tradeoff between granularity and stakeholder relevance.</li>
-      <li>Required iterative experimentation with <code>n_init</code> and <code>max_iter</code> to ensure convergence stability.</li>
-    </ul>
-
-    <h3>5. Time Constraints and Integration</h3>
-    <ul>
-      <li>Running multiple scenarios (missing, noise, imbalance) with consistent documentation under limited project timelines was a major challenge.</li>
-      <li>Developed Jupyter notebooks for each phase, automated graph generation, and created markdown summaries for integration into this portfolio.</li>
-    </ul>
-
-    <h3>6. Navigating Ethical Ambiguities</h3>
-    <ul>
-      <li>How should clusters be used in real marketing? Could they reinforce stereotypes?</li>
-      <li>Inspired by “Navigating Human Bias” class activity, I reviewed fairness metrics before finalizing deployment recommendations.</li>
-      <li>Integrated optional feedback loops into the reporting structure (e.g., customer satisfaction by cluster) to iterate ethically.</li>
-    </ul>
-
-    <div class="diagram">
-      <img src="https://raw.githubusercontent.com/shiyana/Portfolio4/main/challenges-diagram.png" alt="Challenges Visual Breakdown" />
-      <p><em>Figure: Summary flow showing preprocessing issues, mitigation strategies, and fairness reviews</em></p>
+    <div class="tab-content" id="conclusion">
+      <h2>Conclusion</h2>
+      <p>
+        The successful segmentation of customers into four groups demonstrates my advancing skills, enriched by ethical considerations. Diagrams enhance this portfolio artifact, meeting the requirement for comprehensive presentation. This project has become part of my daily routine, as I now regularly assess data fairness during morning reviews, share insights with colleagues over lunch, and refine visualizations in the evening, preparing me for real-world AI challenges. My commitment to ethical leadership grows with each task, from team discussions to personal learning, ensuring my work uplifts diverse communities.
+      </p>
     </div>
   </div>
+
+  <footer>
+    <p>&copy; 2025 Shiyana Jayanesan Shylaja |
+      <a href="https://sites.google.com/view/shiyana-portfolio/home" target="_blank">Artifact 1</a> |
+      <a href="https://shiyana.github.io/Portfolio2/" target="_blank">Artifact 2</a> |
+      <a href="https://shiyana.github.io/Portfolio3/" target="_blank">Artifact 3</a> |
+      <a href="https://shiyana.github.io/Portfolio4/">Artifact 4</a>
+    </p>
+  </footer>
+</body>
+</html>
+"""
+
+# Save to file
+file_path = "/mnt/data/Portfolio4_Complete.html"
+Path(file_path).write_text(full_html_code)
+
+file_path
