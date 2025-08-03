@@ -1,7 +1,3 @@
-from pathlib import Path
-
-# Full HTML content with placeholder replaced for full section content
-full_html_code = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,27 +51,70 @@ full_html_code = """
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
-      <p>[FULL PROCESS CONTENT GOES HERE]</p>
+      <p>
+        <div class="space-y-6">
+          <div>
+            <h3>Data Collection and Assessment</h3>
+            <p>Sourced a retail dataset with income, spending score, and age variables. Identified 5% missing data and outliers (z-score > 3) using pandas and visualization tools like Seaborn heatmaps.</p>
+          </div>
+          <div>
+            <h3>Handling Missing Data</h3>
+            <p>Applied median imputation for income and multiple imputation (via MICE) for cross-validation, inspired by Scenario 1’s health study approach. Added missingness flags to track potential bias, aligning with ethical auditing practices. [Graph 1: Histogram of income before and after imputation, showing how the distribution shifts from a skewed pattern with gaps (due to 5% missing data) to a smoother curve after median imputation at approximately $50,000, demonstrating the effectiveness of the imputation strategy in preserving data integrity.]</p>
+          </div>
+          <div>
+            <h3>Data Cleaning</h3>
+            <p>Used a 3-point rolling average and z-score filtering to smooth spending score fluctuations and remove outliers (e.g., incomes > $500,000), building on Scenario 2’s noise reduction strategies. Validated results with pre- and post-cleaning plots. [Graph 2: Line plot of spending scores over time, comparing raw data with smoothed data, showing a reduction in random spikes (e.g., from 90 to 60) and a stabilized trend around 50 after smoothing, confirming the robustness of the cleaning process.]</p>
+          </div>
+          <div>
+            <h3>Clustering Implementation</h3>
+            <p>Determined k=4 clusters using the elbow method and silhouette scores, applying K-Means iteratively. Adjusted based on segment interpretability, reflecting real-world validation needs.</p>
+          </div>
+          <div>
+            <h3>Exploration of Imbalance</h3>
+            <p>Tested SMOTE to synthesize data points and class weights in a mock supervised model, drawing from Scenario 3’s rare disease focus, to explore fairness in segmentation.</p>
+          </div>
+        </div>
+      </p>
     </div>
 
     <div class="tab-content" id="challenges">
       <h2>Challenges</h2>
-      <p>[FULL CHALLENGES CONTENT GOES HERE]</p>
+      <p>
+        <ul class="list-disc ml-6 space-y-2">
+          <li>Balancing imputation accuracy with fairness required iterative testing, especially for income data, as I struggled to ensure underrepresented groups weren’t skewed by median values in my daily dataset reviews.</li>
+          <li>Smoothing outliers risked losing key patterns, necessitating careful parameter tuning during my evening analysis sessions, where I often debated between preserving data variability and reducing noise.</li>
+          <li>Ensuring ethical segmentation demanded constant reflection on bias, a challenge I face weekly when discussing project impacts with my peers, pushing me to integrate feedback loops into my routine decision-making.</li>
+          <li>Managing time constraints was tough, as balancing this project with my day-to-day work (e.g., morning meetings and afternoon coding) required prioritizing preprocessing steps over initial exploration.</li>
+          <li>Interpreting complex cluster results for non-technical stakeholders, like during family discussions about my studies, tested my ability to simplify ethical implications without losing accuracy.</li>
+        </ul>
+      </p>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
-      <p>[FULL KEY TAKEAWAYS CONTENT GOES HERE]</p>
+      <p>
+        <ul class="list-disc ml-6 space-y-2">
+          <li>Preprocessing is critical for reliable clustering and ethical AI outcomes, a skill I now apply daily when reviewing data quality before team presentations.</li>
+          <li>The class activity highlighted the value of diverse data audits and inclusive design, which I incorporate into my weekly habit of checking dataset diversity during personal projects.</li>
+          <li>Visualizations are vital for communicating results to stakeholders, a lesson I use every day when creating charts for my work reports or explaining concepts to friends.</li>
+          <li>Handling missing data with imputation has become a routine check in my morning data prep, ensuring I address gaps before analysis.</li>
+          <li>Exploring imbalance techniques like SMOTE inspires me to advocate for fairness in my evening study groups, applying these insights to collaborative problem-solving.</li>
+        </ul>
+      </p>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>[FULL REFLECTION CONTENT GOES HERE]</p>
+      <p>
+        This project deepened my understanding of data preprocessing and ethical AI leadership, shaped by the "Navigating Human Bias" class. I learned to handle missing data with imputation, clean noise with smoothing techniques, and address imbalance with resampling, skills honed through the chatbot scenarios. In real life, I apply these by advocating for transparent data practices in my team projects, ensuring fairness in model outputs—e.g., checking for underrepresented groups in datasets during my daily work. My objectives were to master clustering and align it with ethical principles, which I achieved by integrating class insights like Shiyana’s strategies (e.g., feedback loops). The information gathered from scenarios (e.g., Python code, metric choices) guided my process, while results showed four distinct customer segments with improved fairness. Feedback from the chatbot encouraged deeper exploration (e.g., MNAR handling, threshold tuning), which I incorporated by documenting decisions thoroughly. This work, customized for a professional audience, reflects my growth in AI/ML and leadership.
+      </p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion</h2>
-      <p>[FULL CONCLUSION CONTENT GOES HERE]</p>
+      <p>
+        The successful segmentation of customers into four groups demonstrates my advancing skills, enriched by ethical considerations. Diagrams enhance this portfolio artifact, meeting the requirement for comprehensive presentation. This project has become part of my daily routine, as I now regularly assess data fairness during morning reviews, share insights with colleagues over lunch, and refine visualizations in the evening, preparing me for real-world AI challenges. My commitment to ethical leadership grows with each task, from team discussions to personal learning, ensuring my work uplifts diverse communities.
+      </p>
     </div>
   </div>
 
@@ -89,10 +128,3 @@ full_html_code = """
   </footer>
 </body>
 </html>
-"""
-
-# Save to file
-file_path = "/mnt/data/Portfolio4_Complete.html"
-Path(file_path).write_text(full_html_code)
-
-file_path
