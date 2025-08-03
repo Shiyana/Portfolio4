@@ -17,6 +17,7 @@
     .charts img { max-width: 90%; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; }
     a { color: #ffffff; text-decoration: underline; }
     pre.code { background: #f0f0f0; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    ul li { margin-bottom: 10px; }
   </style>
   <script>
     function showTab(id) {
@@ -46,27 +47,38 @@
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p>This artifact explores unsupervised learning via the K-Means clustering algorithm. It includes insights from a series of chatbot-guided data science scenarios tackling missing data, noisy signals, and class imbalance. Each of these challenges was encountered and resolved using Python-based preprocessing and model evaluation tools.</p>
-      <p>The overview also highlights the ethical and leadership aspects of deploying AI solutions in education and healthcare. By understanding bias in data and decision-making, the artifact reflects a holistic view of how AI can serve equity and inclusion when used responsibly.</p>
+      <p><strong>Project Summary:</strong> This artifact demonstrates a comprehensive clustering analysis using K-Means. It combines technical execution, leadership reflection, and ethical considerations in AI. Throughout the project, I tackled three major scenarios in ML: missing data, noisy data, and class imbalance.</p>
+      <p><strong>Scenario Explanations:</strong></p>
+      <ul>
+        <li><strong>Scenario 1 - Missing Data:</strong> I explored how data absence affects model outcomes and compared strategies like mean imputation and KNN imputation using Python’s `sklearn.impute`.</li>
+        <li><strong>Scenario 2 - Noisy Data:</strong> I tested smoothing techniques including rolling average, Savitzky-Golay filter, and visualization of residual noise using matplotlib and seaborn.</li>
+        <li><strong>Scenario 3 - Class Imbalance:</strong> I implemented SMOTE (Synthetic Minority Over-sampling Technique) and evaluated results with precision, recall, and F1 scores.</li>
+      </ul>
       <img src="overview-diagram.png" alt="Overview Diagram">
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
-      <p>From loading the dataset to final evaluation, the K-Means process involved multiple technical steps:</p>
-      <pre class="code"># Data Loading and Scaling
-from sklearn.preprocessing import StandardScaler
+      <p><strong>Step-by-step Execution:</strong></p>
+      <ul>
+        <li>Step 1: Data acquisition and inspection with `pandas`.</li>
+        <li>Step 2: Preprocessing with standardization and outlier handling using `StandardScaler` and z-scores.</li>
+        <li>Step 3: Feature selection and visualization using `matplotlib`, `seaborn` heatmaps.</li>
+        <li>Step 4: Optimal cluster selection using Elbow and Silhouette analysis.</li>
+        <li>Step 5: KMeans clustering with interpretation of centroids and cluster distribution.</li>
+      </ul>
+      <pre class="code">
 from sklearn.cluster import KMeans
-import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
 
-df = pd.read_csv('data.csv')
 scaler = StandardScaler()
-scaled_data = scaler.fit_transform(df)
+data_scaled = scaler.fit_transform(data)
 
-# K-Means Application
 kmeans = KMeans(n_clusters=3, random_state=42)
-kmeans.fit(scaled_data)
-df['Cluster'] = kmeans.labels_
+kmeans.fit(data_scaled)
+labels = kmeans.labels_
+silhouette_avg = silhouette_score(data_scaled, labels)
       </pre>
       <div class="charts">
         <h3>Elbow Method</h3>
@@ -81,33 +93,37 @@ df['Cluster'] = kmeans.labels_
     <div class="tab-content" id="challenges">
       <h2>Challenges & Solutions</h2>
       <ul>
-        <li><strong>Scenario 1 - Missing Data:</strong> Used mean and KNN imputation to preserve distributional integrity.</li>
-        <li><strong>Scenario 2 - Noisy Data:</strong> Applied rolling mean and Savitzky-Golay filters to smooth out spikes in sensor data.</li>
-        <li><strong>Scenario 3 - Imbalanced Data:</strong> Implemented SMOTE to synthetically balance minority class samples.</li>
-        <li><strong>Model Bias:</strong> Conducted fairness audits to detect and correct outcome skew across subgroups.</li>
+        <li><strong>Dealing with mixed data types:</strong> I encoded categorical values using one-hot encoding to ensure compatibility with clustering algorithms.</li>
+        <li><strong>Cluster interpretability:</strong> I plotted cluster means and variances to understand key attributes in each segment.</li>
+        <li><strong>Validating model performance:</strong> Beyond silhouette score, I used Davies-Bouldin Index to confirm compactness and separation.</li>
+        <li><strong>Bias risks:</strong> I conducted subgroup analysis to identify potential demographic skews in cluster distribution.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
       <ul>
-        <li>Recognized that preprocessing directly affects clustering reliability.</li>
-        <li>Learned to select K using visual and metric-based methods.</li>
-        <li>Connected unsupervised learning to real-world deployment scenarios through hands-on chatbot activities.</li>
-        <li>Gained appreciation for responsible data use, bias detection, and ethical AI leadership.</li>
+        <li>Hands-on clustering gave me a concrete understanding of unsupervised learning theory and practice.</li>
+        <li>Evaluation metrics like silhouette score and elbow plots became essential tools in my workflow.</li>
+        <li>Visualizations greatly enhanced interpretability and stakeholder communication.</li>
+        <li>Scenario-based learning helped me prepare for real-world data irregularities.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>This project offered a strong combination of technical skill development and value-based learning. Through it, I’ve built confidence in working with unsupervised models and tools like Silhouette and Elbow charts. I also realized that AI’s success depends not only on math but also on our ability to make it fair and accountable.</p>
-      <p>The chatbot scenarios mimicked the ambiguity often found in real-world problems. Having to select, justify, and revise solutions in context reminded me that modeling is a continuous and human-centered process, not just technical execution.</p>
+      <p>This project deepened both my technical and ethical competencies. I discovered that machine learning isn’t just coding—it’s about designing systems that serve people fairly and transparently. The chatbot guidance simulated mentoring, which helped me explore, revise, and reason through complex scenarios. I will carry forward the habit of scenario thinking and iterative refinement into future AI tasks.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion & Future Directions</h2>
-      <p>This artifact will be expanded with DBSCAN and hierarchical clustering comparisons. I will apply PCA to reduce dimensions for better visualization. In the long run, this foundation will guide my work in AI-driven education platforms and bias-aware student modeling tools.</p>
-      <p>I also plan to publish technical walkthroughs and ethical use case reviews on my portfolio site to help other students and educators follow best practices in AI development.</p>
+      <p>In future iterations of this artifact, I aim to:</p>
+      <ul>
+        <li>Compare performance across KMeans, DBSCAN, and hierarchical clustering.</li>
+        <li>Use dimensionality reduction (PCA/t-SNE) for enhanced interpretability.</li>
+        <li>Apply this pipeline to educational data and explore fairness metrics across diverse student groups.</li>
+        <li>Publish code and walkthroughs on GitHub to foster open learning.</li>
+      </ul>
     </div>
   </div>
 
