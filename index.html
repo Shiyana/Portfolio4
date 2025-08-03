@@ -8,26 +8,49 @@
   <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script> <!-- CDN for testing; use Tailwind CLI for production -->
+  <style>
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .flowchart rect { fill: #93C5FD; stroke: #1E3A8A; }
+    .flowchart text { fill: #1E3A8A; font-weight: bold; }
+  </style>
 </head>
 <body>
   <div id="root"></div>
 
   <script type="text/babel">
-    const { useRef, useEffect } = React;
+    const { useState, useRef, useEffect } = React;
 
     const ChartComponent = ({ type, data, options }) => {
       const chartRef = useRef(null);
 
       useEffect(() => {
-        const ctx = chartRef.current.getContext('2d');
-        new Chart(ctx, { type, data, options });
+        if (chartRef.current) {
+          const ctx = chartRef.current.getContext('2d');
+          if (ctx) {
+            new Chart(ctx, { type, data, options });
+          } else {
+            console.error("Canvas context is null");
+          }
+        } else {
+          console.error("Chart ref is null");
+        }
       }, [type, data, options]);
 
       return <canvas ref={chartRef} />;
     };
 
+    const TabContent = ({ id, title, children, activeTab, setActiveTab }) => (
+      <div className={`tab-content ${activeTab === id ? 'active' : ''}`}>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
+        {children}
+      </div>
+    );
+
     const Portfolio = () => {
+      const [activeTab, setActiveTab] = useState('overview');
+
       return (
         <div className="container mx-auto p-6 bg-gray-100 min-h-screen">
           <header className="text-center mb-8">
@@ -35,167 +58,172 @@
             <p className="text-lg text-gray-600 mt-2">Shiyana Jayanesan Shylaja | Machine Learning Portfolio</p>
           </header>
 
-          <nav className="mb-6">
-            <ul className="flex justify-center space-x-6">
-              <li><a href="#overview" className="text-blue-500 hover:text-blue-700">Overview</a></li>
-              <li><a href="#process" className="text-blue-500 hover:text-blue-700">Process</a></li>
-              <li><a href="#challenges" className="text-blue-500 hover:text-blue-700">Challenges</a></li>
-              <li><a href="#key-takeaways" className="text-blue-500 hover:text-blue-700">Key Takeaways</a></li>
-              <li><a href="#reflection" className="text-blue-500 hover:text-blue-700">Reflection</a></li>
-              <li><a href="#conclusion" className="text-blue-500 hover:text-blue-700">Conclusion</a></li>
-            </ul>
+          <nav className="mb-6 flex justify-center space-x-6 border-b border-blue-300">
+            {['overview', 'process', 'challenges', 'key-takeaways', 'reflection', 'conclusion'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-2 text-sm font-medium ${activeTab === tab ? 'text-blue-800 border-b-2 border-blue-800' : 'text-gray-600 hover:text-blue-700'}`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1).replace('-', ' ')}
+              </button>
+            ))}
           </nav>
 
-          <section id="overview" className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Overview</h2>
-            <p className="text-gray-700">
-              This project showcases my application of unsupervised learning through K-Means clustering on a retail customer dataset, aiming to segment customers based on income and spending scores for targeted marketing. The class activity "Navigating Human Bias as a Leader in AI and Education" significantly shaped this work, emphasizing ethical leadership and fairness. Through a chatbot-guided exercise, we tackled three machine learning scenarios that mirrored real-world data challenges:
-              <ul className="list-disc ml-6 mt-2">
-                <li><strong>Missing Data:</strong> We addressed incomplete health study data (e.g., missing age and weight) using imputation techniques like median and multiple imputation, reflecting on how missingness might skew results for underrepresented groups, a concern raised in Shiyana Jayanesan Shylaja’s discussion on diverse data audits.</li>
-                <li><strong>Noisy Data:</strong> We handled noisy sensor readings with smoothing techniques (e.g., moving averages, z-score filtering), considering how noise could obscure fair segmentation, aligning with the need for transparent metrics.</li>
-                <li><strong>Imbalanced Datasets:</strong> We explored SMOTE and class weighting for rare disease prediction, connecting to inclusive design principles discussed in class, ensuring models don’t overlook minority groups.</li>
+          <div className="tab-container">
+            <TabContent id="overview" title="Overview" activeTab={activeTab} setActiveTab={setActiveTab}>
+              <p className="text-gray-700">
+                This project showcases my application of unsupervised learning through K-Means clustering on a retail customer dataset, aiming to segment customers based on income and spending scores for targeted marketing. The class activity "Navigating Human Bias as a Leader in AI and Education" significantly shaped this work, emphasizing ethical leadership and fairness. Through a chatbot-guided exercise, we tackled three machine learning scenarios that mirrored real-world data challenges:
+                <ul className="list-disc ml-6 mt-2">
+                  <li><strong>Missing Data:</strong> We addressed incomplete health study data (e.g., missing age and weight) using imputation techniques like median and multiple imputation, reflecting on how missingness might skew results for underrepresented groups, a concern raised in Shiyana Jayanesan Shylaja’s discussion on diverse data audits.</li>
+                  <li><strong>Noisy Data:</strong> We handled noisy sensor readings with smoothing techniques (e.g., moving averages, z-score filtering), considering how noise could obscure fair segmentation, aligning with the need for transparent metrics.</li>
+                  <li><strong>Imbalanced Datasets:</strong> We explored SMOTE and class weighting for rare disease prediction, connecting to inclusive design principles discussed in class, ensuring models don’t overlook minority groups.</li>
+                </ul>
+                These scenarios, completed with detailed decision-making and Python implementations (e.g., SimpleImputer, SMOTE), enhanced my technical and ethical skills. Diagrams will illustrate the clustering process, data preprocessing, and segment distributions.
+              </p>
+              <div className="mt-4">
+                <h3 className="text-xl font-medium text-gray-700">Overview Flowchart</h3>
+                <svg className="flowchart w-full h-64" viewBox="0 0 400 200">
+                  <rect x="50" y="20" width="100" height="60" rx="10" />
+                  <text x="100" y="50" textAnchor="middle">Data Collection</text>
+                  <rect x="50" y="100" width="100" height="60" rx="10" />
+                  <text x="100" y="130" textAnchor="middle">Preprocessing</text>
+                  <rect x="250" y="60" width="100" height="60" rx="10" />
+                  <text x="300" y="90" textAnchor="middle">Clustering</text>
+                  <line x1="150" y1="50" x2="250" y2="90" stroke="#1E3A8A" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                  <line x1="150" y1="130" x2="250" y2="90" stroke="#1E3A8A" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                  <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                      <polygon points="0 0, 10 3.5, 0 7" fill="#1E3A8A" />
+                    </marker>
+                  </defs>
+                </svg>
+              </div>
+            </TabContent>
+
+            <TabContent id="process" title="Process" activeTab={activeTab} setActiveTab={setActiveTab}>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xl font-medium text-gray-700">Data Collection and Assessment</h3>
+                  <p className="text-gray-700">Sourced a retail dataset with income, spending score, and age variables. Identified 5% missing data and outliers (z-score > 3) using pandas and visualization tools like Seaborn heatmaps.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-gray-700">Handling Missing Data</h3>
+                  <p className="text-gray-700">Applied median imputation for income and multiple imputation (via MICE) for cross-validation, inspired by Scenario 1’s health study approach. Added missingness flags to track potential bias, aligning with ethical auditing practices. [Graph 1: Histogram of income before and after imputation, showing how the distribution shifts from a skewed pattern with gaps (due to 5% missing data) to a smoother curve after median imputation at approximately $50,000, demonstrating the effectiveness of the imputation strategy in preserving data integrity.]</p>
+                  <ChartComponent
+                    type="bar"
+                    data={{
+                      labels: ["0-20k", "20k-40k", "40k-60k", "60k-80k", "80k-100k"],
+                      datasets: [
+                        {
+                          label: "Before Imputation",
+                          data: [15, 25, 30, 20, 10],
+                          backgroundColor: "#FF6384",
+                          borderColor: "#FF6384",
+                          borderWidth: 1
+                        },
+                        {
+                          label: "After Imputation",
+                          data: [18, 28, 35, 15, 4],
+                          backgroundColor: "#36A2EB",
+                          borderColor: "#36A2EB",
+                          borderWidth: 1
+                        }
+                      ]
+                    }}
+                    options={{
+                      scales: {
+                        y: { beginAtZero: true, title: { display: true, text: "Number of Customers" } },
+                        x: { title: { display: true, text: "Income Range ($)" } }
+                      },
+                      plugins: {
+                        legend: { position: "top" },
+                        title: { display: true, text: "Income Distribution Before and After Imputation" }
+                      }
+                    }}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-gray-700">Data Cleaning</h3>
+                  <p className="text-gray-700">Used a 3-point rolling average and z-score filtering to smooth spending score fluctuations and remove outliers (e.g., incomes > $500,000), building on Scenario 2’s noise reduction strategies. Validated results with pre- and post-cleaning plots. [Graph 2: Line plot of spending scores over time, comparing raw data with smoothed data, showing a reduction in random spikes (e.g., from 90 to 60) and a stabilized trend around 50 after smoothing, confirming the robustness of the cleaning process.]</p>
+                  <ChartComponent
+                    type="line"
+                    data={{
+                      labels: ["T1", "T2", "T3", "T4", "T5", "T6", "T7"],
+                      datasets: [
+                        {
+                          label: "Raw Spending Scores",
+                          data: [30, 90, 40, 20, 85, 50, 35],
+                          backgroundColor: "#FFCE56",
+                          borderColor: "#FFCE56",
+                          borderWidth: 2,
+                          fill: false
+                        },
+                        {
+                          label: "Smoothed Spending Scores",
+                          data: [35, 60, 45, 40, 55, 50, 45],
+                          backgroundColor: "#4BC0C0",
+                          borderColor: "#4BC0C0",
+                          borderWidth: 2,
+                          fill: false
+                        }
+                      ]
+                    }}
+                    options={{
+                      scales: {
+                        y: { beginAtZero: true, title: { display: true, text: "Spending Score" } },
+                        x: { title: { display: true, text: "Time Period" } }
+                      },
+                      plugins: {
+                        legend: { position: "top" },
+                        title: { display: true, text: "Spending Scores Before and After Smoothing" }
+                      }
+                    }}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-gray-700">Clustering Implementation</h3>
+                  <p className="text-gray-700">Determined k=4 clusters using the elbow method and silhouette scores, applying K-Means iteratively. Adjusted based on segment interpretability, reflecting real-world validation needs.</p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium text-gray-700">Exploration of Imbalance</h3>
+                  <p className="text-gray-700">Tested SMOTE to synthesize data points and class weights in a mock supervised model, drawing from Scenario 3’s rare disease focus, to explore fairness in segmentation.</p>
+                </div>
+              </div>
+            </TabContent>
+
+            <TabContent id="challenges" title="Challenges" activeTab={activeTab} setActiveTab={setActiveTab}>
+              <ul className="list-disc ml-6 space-y-2 text-gray-700">
+                <li>Balancing imputation accuracy with fairness required iterative testing, especially for income data, as I struggled to ensure underrepresented groups weren’t skewed by median values in my daily dataset reviews.</li>
+                <li>Smoothing outliers risked losing key patterns, necessitating careful parameter tuning during my evening analysis sessions, where I often debated between preserving data variability and reducing noise.</li>
+                <li>Ensuring ethical segmentation demanded constant reflection on bias, a challenge I face weekly when discussing project impacts with my peers, pushing me to integrate feedback loops into my routine decision-making.</li>
+                <li>Managing time constraints was tough, as balancing this project with my day-to-day work (e.g., morning meetings and afternoon coding) required prioritizing preprocessing steps over initial exploration.</li>
+                <li>Interpreting complex cluster results for non-technical stakeholders, like during family discussions about my studies, tested my ability to simplify ethical implications without losing accuracy.</li>
               </ul>
-              These scenarios, completed with detailed decision-making and Python implementations (e.g., SimpleImputer, SMOTE), enhanced my technical and ethical skills. Diagrams will illustrate the clustering process, data preprocessing, and segment distributions.
-            </p>
-          </section>
+            </TabContent>
 
-          <section id="process" className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Process</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-medium text-gray-700">Data Collection and Assessment</h3>
-                <p className="text-gray-700">Sourced a retail dataset with income, spending score, and age variables. Identified 5% missing data and outliers (z-score > 3) using pandas and visualization tools like Seaborn heatmaps.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-medium text-gray-700">Handling Missing Data</h3>
-                <p className="text-gray-700">Applied median imputation for income and multiple imputation (via MICE) for cross-validation, inspired by Scenario 1’s health study approach. Added missingness flags to track potential bias, aligning with ethical auditing practices. [Graph 1: Histogram of income before and after imputation, showing how the distribution shifts from a skewed pattern with gaps (due to 5% missing data) to a smoother curve after median imputation at approximately $50,000, demonstrating the effectiveness of the imputation strategy in preserving data integrity.]</p>
-                <ChartComponent
-                  type="bar"
-                  data={{
-                    labels: ["0-20k", "20k-40k", "40k-60k", "60k-80k", "80k-100k"],
-                    datasets: [
-                      {
-                        label: "Before Imputation",
-                        data: [15, 25, 30, 20, 10],
-                        backgroundColor: "#FF6384",
-                        borderColor: "#FF6384",
-                        borderWidth: 1
-                      },
-                      {
-                        label: "After Imputation",
-                        data: [18, 28, 35, 15, 4],
-                        backgroundColor: "#36A2EB",
-                        borderColor: "#36A2EB",
-                        borderWidth: 1
-                      }
-                    ]
-                  }}
-                  options={{
-                    scales: {
-                      y: {
-                        beginAtZero: true,
-                        title: { display: true, text: "Number of Customers" }
-                      },
-                      x: {
-                        title: { display: true, text: "Income Range ($)" }
-                      }
-                    },
-                    plugins: {
-                      legend: { position: "top" },
-                      title: { display: true, text: "Income Distribution Before and After Imputation" }
-                    }
-                  }}
-                />
-              </div>
-              <div>
-                <h3 className="text-xl font-medium text-gray-700">Data Cleaning</h3>
-                <p className="text-gray-700">Used a 3-point rolling average and z-score filtering to smooth spending score fluctuations and remove outliers (e.g., incomes > $500,000), building on Scenario 2’s noise reduction strategies. Validated results with pre- and post-cleaning plots. [Graph 2: Line plot of spending scores over time, comparing raw data with smoothed data, showing a reduction in random spikes (e.g., from 90 to 60) and a stabilized trend around 50 after smoothing, confirming the robustness of the cleaning process.]</p>
-                <ChartComponent
-                  type="line"
-                  data={{
-                    labels: ["T1", "T2", "T3", "T4", "T5", "T6", "T7"],
-                    datasets: [
-                      {
-                        label: "Raw Spending Scores",
-                        data: [30, 90, 40, 20, 85, 50, 35],
-                        backgroundColor: "#FFCE56",
-                        borderColor: "#FFCE56",
-                        borderWidth: 2,
-                        fill: false
-                      },
-                      {
-                        label: "Smoothed Spending Scores",
-                        data: [35, 60, 45, 40, 55, 50, 45],
-                        backgroundColor: "#4BC0C0",
-                        borderColor: "#4BC0C0",
-                        borderWidth: 2,
-                        fill: false
-                      }
-                    ]
-                  }}
-                  options={{
-                    scales: {
-                      y: {
-                        beginAtZero: true,
-                        title: { display: true, text: "Spending Score" }
-                      },
-                      x: {
-                        title: { display: true, text: "Time Period" }
-                      }
-                    },
-                    plugins: {
-                      legend: { position: "top" },
-                      title: { display: true, text: "Spending Scores Before and After Smoothing" }
-                    }
-                  }}
-                />
-              </div>
-              <div>
-                <h3 className="text-xl font-medium text-gray-700">Clustering Implementation</h3>
-                <p className="text-gray-700">Determined k=4 clusters using the elbow method and silhouette scores, applying K-Means iteratively. Adjusted based on segment interpretability, reflecting real-world validation needs.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-medium text-gray-700">Exploration of Imbalance</h3>
-                <p className="text-gray-700">Tested SMOTE to synthesize data points and class weights in a mock supervised model, drawing from Scenario 3’s rare disease focus, to explore fairness in segmentation.</p>
-              </div>
-            </div>
-          </section>
+            <TabContent id="key-takeaways" title="Key Takeaways" activeTab={activeTab} setActiveTab={setActiveTab}>
+              <ul className="list-disc ml-6 space-y-2 text-gray-700">
+                <li>Preprocessing is critical for reliable clustering and ethical AI outcomes, a skill I now apply daily when reviewing data quality before team presentations.</li>
+                <li>The class activity highlighted the value of diverse data audits and inclusive design, which I incorporate into my weekly habit of checking dataset diversity during personal projects.</li>
+                <li>Visualizations are vital for communicating results to stakeholders, a lesson I use every day when creating charts for my work reports or explaining concepts to friends.</li>
+                <li>Handling missing data with imputation has become a routine check in my morning data prep, ensuring I address gaps before analysis.</li>
+                <li>Exploring imbalance techniques like SMOTE inspires me to advocate for fairness in my evening study groups, applying these insights to collaborative problem-solving.</li>
+              </ul>
+            </TabContent>
 
-          <section id="challenges" className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Challenges</h2>
-            <ul className="list-disc ml-6 space-y-2 text-gray-700">
-              <li>Balancing imputation accuracy with fairness required iterative testing, especially for income data, as I struggled to ensure underrepresented groups weren’t skewed by median values in my daily dataset reviews.</li>
-              <li>Smoothing outliers risked losing key patterns, necessitating careful parameter tuning during my evening analysis sessions, where I often debated between preserving data variability and reducing noise.</li>
-              <li>Ensuring ethical segmentation demanded constant reflection on bias, a challenge I face weekly when discussing project impacts with my peers, pushing me to integrate feedback loops into my routine decision-making.</li>
-              <li>Managing time constraints was tough, as balancing this project with my day-to-day work (e.g., morning meetings and afternoon coding) required prioritizing preprocessing steps over initial exploration.</li>
-              <li>Interpreting complex cluster results for non-technical stakeholders, like during family discussions about my studies, tested my ability to simplify ethical implications without losing accuracy.</li>
-            </ul>
-          </section>
+            <TabContent id="reflection" title="Reflection" activeTab={activeTab} setActiveTab={setActiveTab}>
+              <p className="text-gray-700">
+                This project deepened my understanding of data preprocessing and ethical AI leadership, shaped by the "Navigating Human Bias" class. I learned to handle missing data with imputation, clean noise with smoothing techniques, and address imbalance with resampling, skills honed through the chatbot scenarios. In real life, I apply these by advocating for transparent data practices in my team projects, ensuring fairness in model outputs—e.g., checking for underrepresented groups in datasets during my daily work. My objectives were to master clustering and align it with ethical principles, which I achieved by integrating class insights like Shiyana’s strategies (e.g., feedback loops). The information gathered from scenarios (e.g., Python code, metric choices) guided my process, while results showed four distinct customer segments with improved fairness. Feedback from the chatbot encouraged deeper exploration (e.g., MNAR handling, threshold tuning), which I incorporated by documenting decisions thoroughly. This work, customized for a professional audience, reflects my growth in AI/ML and leadership.
+              </p>
+            </TabContent>
 
-          <section id="key-takeaways" className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Key Takeaways</h2>
-            <ul className="list-disc ml-6 space-y-2 text-gray-700">
-              <li>Preprocessing is critical for reliable clustering and ethical AI outcomes, a skill I now apply daily when reviewing data quality before team presentations.</li>
-              <li>The class activity highlighted the value of diverse data audits and inclusive design, which I incorporate into my weekly habit of checking dataset diversity during personal projects.</li>
-              <li>Visualizations are vital for communicating results to stakeholders, a lesson I use every day when creating charts for my work reports or explaining concepts to friends.</li>
-              <li>Handling missing data with imputation has become a routine check in my morning data prep, ensuring I address gaps before analysis.</li>
-              <li>Exploring imbalance techniques like SMOTE inspires me to advocate for fairness in my evening study groups, applying these insights to collaborative problem-solving.</li>
-            </ul>
-          </section>
-
-          <section id="reflection" className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Reflection</h2>
-            <p className="text-gray-700">
-              This project deepened my understanding of data preprocessing and ethical AI leadership, shaped by the "Navigating Human Bias" class. I learned to handle missing data with imputation, clean noise with smoothing techniques, and address imbalance with resampling, skills honed through the chatbot scenarios. In real life, I apply these by advocating for transparent data practices in my team projects, ensuring fairness in model outputs—e.g., checking for underrepresented groups in datasets during my daily work. My objectives were to master clustering and align it with ethical principles, which I achieved by integrating class insights like Shiyana’s strategies (e.g., feedback loops). The information gathered from scenarios (e.g., Python code, metric choices) guided my process, while results showed four distinct customer segments with improved fairness. Feedback from the chatbot encouraged deeper exploration (e.g., MNAR handling, threshold tuning), which I incorporated by documenting decisions thoroughly. This work, customized for a professional audience, reflects my growth in AI/ML and leadership.
-            </p>
-          </section>
-
-          <section id="conclusion" className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Conclusion</h2>
-            <p className="text-gray-700">
-              The successful segmentation of customers into four groups demonstrates my advancing skills, enriched by ethical considerations. Diagrams enhance this portfolio artifact, meeting the requirement for comprehensive presentation. This project has become part of my daily routine, as I now regularly assess data fairness during morning reviews, share insights with colleagues over lunch, and refine visualizations in the evening, preparing me for real-world AI challenges. My commitment to ethical leadership grows with each task, from team discussions to personal learning, ensuring my work uplifts diverse communities.
-            </p>
-          </section>
+            <TabContent id="conclusion" title="Conclusion" activeTab={activeTab} setActiveTab={setActiveTab}>
+              <p className="text-gray-700">
+                The successful segmentation of customers into four groups demonstrates my advancing skills, enriched by ethical considerations. Diagrams enhance this portfolio artifact, meeting the requirement for comprehensive presentation. This project has become part of my daily routine, as I now regularly assess data fairness during morning reviews, share insights with colleagues over lunch, and refine visualizations in the evening, preparing me for real-world AI challenges. My commitment to ethical leadership grows with each task, from team discussions to personal learning, ensuring my work uplifts diverse communities.
+              </p>
+            </TabContent>
+          </div>
 
           <footer className="text-center text-gray-500 mt-8">
             <p>&copy; 2025 Shiyana Jayanesan Shylaja. All rights reserved.</p>
