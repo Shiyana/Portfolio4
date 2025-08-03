@@ -45,25 +45,19 @@
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p>This artifact showcases my hands-on application of clustering techniques using the K-Means algorithm. Alongside, I engaged in a multi-scenario chatbot activity that explored realistic machine learning challenges.</p>
-      <p>Through interactive discussion, I addressed:</p>
-      <ul>
-        <li><strong>Scenario 1:</strong> Handling Missing Data using imputation methods, predictive modeling, and missingness flags.</li>
-        <li><strong>Scenario 2:</strong> Cleaning Noisy Data using visualization, outlier detection, and smoothing techniques like moving average and Gaussian filters.</li>
-        <li><strong>Scenario 3:</strong> Dealing with Class Imbalance using SMOTE, class weighting, and proper evaluation metrics such as recall and F1-score.</li>
-      </ul>
-      <p>Each scenario was followed by a reflection where I examined my confidence, gaps in understanding, and future learning goals—highlighting real-world implications and the human responsibility behind technical decision-making.</p>
-      <p>This comprehensive learning journey helped me deepen my data handling skills, explore ethical implications, and integrate data science with leadership and fairness principles in AI.</p>
+      <p>This artifact demonstrates my ability to implement and evaluate clustering techniques using the K-Means algorithm in Python. As part of the class activity, I participated in a guided chatbot session addressing three realistic machine learning scenarios: missing data, noisy data, and class imbalance. These exercises helped me understand practical data challenges and how to solve them efficiently using Python and various imputation, smoothing, and resampling techniques.</p>
+      <p>In addition to the technical clustering work, I reflected on how leadership, ethics, and bias are central to the responsible application of AI in real-world domains like healthcare and education. This dual focus—technical implementation and ethical consideration—has helped me better appreciate my role as a future AI practitioner and leader.</p>
+      <p>By integrating these classroom learnings with this project, I not only practiced unsupervised learning, but also developed soft skills such as problem-solving, decision-making under uncertainty, and recognizing potential bias in model outcomes.</p>
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
       <p>
-        <strong>Step 1:</strong> Cleaned missing values and scaled numerical features.<br>
-        <strong>Step 2:</strong> Explored features like income and spending behavior.<br>
-        <strong>Step 3:</strong> Used Elbow and Silhouette methods to determine optimal clusters.<br>
-        <strong>Step 4:</strong> Performed K-Means clustering with k=3.<br>
-        <strong>Step 5:</strong> Created visualizations to evaluate segmentation quality.
+        <strong>Step 1:</strong> Loaded and cleaned the dataset, handling missing values and scaling numerical features.<br>
+        <strong>Step 2:</strong> Explored relationships between variables (e.g., income and spending behavior).<br>
+        <strong>Step 3:</strong> Used Elbow and Silhouette methods to determine the optimal number of clusters (k).<br>
+        <strong>Step 4:</strong> Applied K-Means clustering using scikit-learn with k=3.<br>
+        <strong>Step 5:</strong> Visualized and interpreted clustering results to segment customer groups.
       </p>
       <div class="charts">
         <h3>Elbow Method</h3>
@@ -80,31 +74,32 @@
     <div class="tab-content" id="challenges">
       <h2>Challenges & Solutions</h2>
       <ul>
-        <li><strong>Unclear clustering patterns:</strong> Mitigated with multiple evaluation metrics.</li>
-        <li><strong>Outliers:</strong> Filtered prior to training using IQR and Z-score methods.</li>
-        <li><strong>Cluster interpretation:</strong> Used feature distributions to label clusters meaningfully.</li>
+        <li><strong>Unclear cluster boundaries:</strong> Mitigated by trying multiple values of k and using Silhouette Score for validation.</li>
+        <li><strong>Presence of outliers:</strong> Used statistical filtering with IQR and z-scores before training.</li>
+        <li><strong>Interpretability of clusters:</strong> Examined feature means per cluster and created labels accordingly (e.g., High Income-Low Spend group).</li>
       </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
       <ul>
-        <li>Gained confidence using unsupervised learning techniques like K-Means.</li>
-        <li>Learned to evaluate model outputs using Silhouette and Elbow metrics.</li>
-        <li>Explored human bias and fairness through chatbot discussion scenarios.</li>
-        <li>Developed a data cleaning mindset, especially in healthcare and education contexts.</li>
+        <li>Learned how to apply unsupervised learning for real-world segmentation tasks.</li>
+        <li>Practiced evaluating clustering performance using visual and numeric methods.</li>
+        <li>Understood how preprocessing affects cluster quality.</li>
+        <li>Gained practical experience on real-world problems like missing, noisy, and imbalanced data through guided chatbot scenarios.</li>
+        <li>Connected machine learning work to human-centered leadership values like fairness and inclusivity.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>This project helped me develop an integrated understanding of unsupervised learning and real-world data cleaning. It made me aware of how preprocessing affects downstream analysis, model robustness, and fairness.</p>
-      <p>The chatbot activity taught me to think critically about model assumptions, how to prevent bias, and how to approach data limitations systematically. I now feel ready to explore clustering in industry settings and combine it with customer behavior insights.</p>
+      <p>Through this assignment, I became more confident working with unsupervised learning, especially clustering methods. The class chatbot activity gave me a space to explore data imperfections and reflect on problem-solving strategies. I realized the importance of choosing the right evaluation metric, especially when interpreting clusters or training models with imbalanced data.</p>
+      <p>I also learned that being a responsible AI leader means thinking beyond the model's performance—understanding how models affect people and how fairness and transparency must be built into our systems from the ground up. This exercise helped bridge the gap between technical work and ethical implementation.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion & Future Work</h2>
-      <p>I plan to compare K-Means with hierarchical and DBSCAN clustering. I'd also like to experiment with dimensionality reduction using PCA and t-SNE before clustering to gain deeper insights from complex datasets.</p>
+      <p>Looking ahead, I plan to extend this project by comparing K-Means with alternative algorithms like DBSCAN and hierarchical clustering. I am also interested in applying dimensionality reduction methods like PCA before clustering to improve model performance and interpretability. My long-term goal is to use these techniques in customer segmentation and behavioral targeting tasks in real-world business contexts.</p>
     </div>
   </div>
 
