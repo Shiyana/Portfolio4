@@ -45,60 +45,68 @@
 
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
-      <p>This artifact focuses on my implementation of the K-Means clustering algorithm in Python to solve unsupervised learning tasks. Central to this artifact was a guided class chatbot activity, where I explored and responded to three real-world machine learning challenges—handling missing data, addressing noisy data, and managing class imbalance.</p>
-      <p>In the first scenario, I worked with a dataset containing missing values, a common issue in healthcare and business analytics. I applied various strategies like mean/mode imputation, KNN imputation, and complete-case analysis. Each technique had its merits, and I learned the importance of data context in selecting the right method.</p>
-      <p>In the second scenario—noisy data—I explored smoothing techniques such as moving averages and exponential smoothing, alongside outlier detection using IQR and z-scores. I realized the impact of noise on clustering algorithms, especially in skewing centroids and cluster separations.</p>
-      <p>The third scenario—class imbalance—challenged me to use oversampling (SMOTE) and undersampling techniques to balance skewed class distributions. Through this, I discovered how models could be biased if the data is not fairly represented. Integrating these lessons into clustering further enhanced my approach to identifying reliable, interpretable clusters.</p>
-      <p>These scenarios provided a bridge between theoretical learning and practical application, pushing me to think critically and build intuition for working with real-world data challenges. Combined with the technical implementation of K-Means, this exercise strengthened my skills in exploratory data analysis, data cleaning, and ethical ML practices.</p>
+      <p>This artifact documents my hands-on experience with K-Means clustering, an unsupervised learning method used to discover inherent groupings within data. The activity was based on interactive, real-world machine learning scenarios designed to simulate practical challenges encountered in the data science field.</p>
+      <p>I worked through three primary scenarios during the guided chatbot session: handling missing data, dealing with noisy data, and managing class imbalance. Each presented unique challenges and taught me valuable lessons about data preprocessing and its impact on machine learning outcomes. The first scenario emphasized strategies like mean, median, and KNN imputation. The second scenario focused on noise handling using statistical methods like z-score, IQR, and moving averages. The third covered class imbalance and involved SMOTE and resampling techniques to prepare data for fair analysis.</p>
+      <p>These foundational tasks culminated in a clustering project where I implemented K-Means on a real dataset. This phase involved choosing the optimal number of clusters using the Elbow and Silhouette methods, visualizing clusters, and interpreting patterns. The practical experience blended both technical skills—Python programming, statistical analysis, visualization—and reflective thinking on how bias, ethics, and fairness play out in AI systems.</p>
+      <p>My engagement with this artifact extended beyond coding. I considered the societal implications of using machine learning in fields such as healthcare, education, and finance, where biased or poorly trained models can lead to harmful outcomes. I learned that good data science isn't just about accuracy—it's also about empathy, transparency, and fairness.</p>
     </div>
 
     <div class="tab-content" id="process">
       <h2>Process</h2>
-      <p>Detailed steps followed:</p>
+      <p>This section outlines the step-by-step process I followed to carry out K-Means clustering, from data loading to interpretation.</p>
       <ol>
-        <li><strong>Data Preprocessing:</strong> Cleaned the dataset by addressing missing values with imputation strategies and scaled features using StandardScaler to normalize the range of values.</li>
-        <li><strong>Exploratory Analysis:</strong> Used pairplots and correlation heatmaps to understand data distributions and relationships.</li>
-        <li><strong>Cluster Tendency Assessment:</strong> Employed the Elbow Method and Silhouette Score to determine the optimal number of clusters (k=3).</li>
-        <li><strong>Model Application:</strong> Implemented K-Means using scikit-learn and visualized the output using matplotlib and seaborn for 2D plotting.</li>
-        <li><strong>Validation:</strong> Assessed model performance through average Silhouette Coefficient and interpretability of centroids.</li>
+        <li><strong>Data Acquisition and Cleaning:</strong> I used a sample dataset simulating customer attributes like income, age, and spending. I handled missing values using imputation methods—mean, median, KNN. I used visualization (e.g., heatmaps) to assess data quality.</li>
+        <li><strong>Exploratory Data Analysis (EDA):</strong> I examined correlations, distributions, and pairwise plots. This helped uncover potential clusters and outliers, laying the groundwork for choosing features and identifying necessary transformations.</li>
+        <li><strong>Feature Engineering and Scaling:</strong> I used StandardScaler to normalize the data, ensuring features like income and age were on comparable scales to avoid dominating cluster formation.</li>
+        <li><strong>Optimal Cluster Selection:</strong> The Elbow Method revealed that 3 clusters provided the best balance between cohesion and separation. The Silhouette Score further validated this decision by providing high intra-cluster consistency and inter-cluster separation.</li>
+        <li><strong>Model Training:</strong> I applied KMeans from scikit-learn and visualized clusters using matplotlib and seaborn. I plotted the clusters in 2D (PCA-reduced) and examined centroids.</li>
+        <li><strong>Interpretation:</strong> I analyzed each cluster by calculating the mean feature values, helping assign intuitive labels such as "High Income - Low Spending" or "Low Income - High Spending." This was key to bridging the model output with human interpretation.</li>
       </ol>
       <div class="charts">
+        <h3>Elbow Method</h3>
         <img src="elbow-method.png" alt="Elbow Method Chart">
+        <h3>Silhouette Score</h3>
         <img src="silhouette.png" alt="Silhouette Score Chart">
+        <h3>Cluster Visualization</h3>
         <img src="clusters.png" alt="Cluster Visualization">
       </div>
     </div>
 
     <div class="tab-content" id="challenges">
       <h2>Challenges & Solutions</h2>
+      <p>This section details how I approached and resolved key challenges during the artifact development.</p>
       <ul>
-        <li><strong>Scenario 1 - Missing Data:</strong> Choosing between deletion vs. imputation required balancing completeness with potential bias. KNN imputation preserved variance better.</li>
-        <li><strong>Scenario 2 - Noisy Data:</strong> High variance in readings introduced noise into clusters. Applied moving average smoothing and removed extreme outliers using IQR.</li>
-        <li><strong>Scenario 3 - Class Imbalance:</strong> Though K-Means is unsupervised, it is affected by imbalanced representations. Synthetic techniques like SMOTE and stratified sampling ensured better groupings post-preprocessing.</li>
-        <li><strong>Cluster Interpretation:</strong> Initially, centroid values were hard to label. Post-clustering, used mean feature values to assign meaningful labels like "High Income-Low Spending".</li>
+        <li><strong>Missing Data:</strong> Some entries had null values in key columns. I compared deletion with imputation strategies. Mean imputation was simplest but distorted distributions. KNN imputation provided more realistic values by leveraging data patterns.</li>
+        <li><strong>Noisy Data:</strong> Noise skewed distance calculations critical to clustering. I used boxplots and z-scores to detect and remove outliers, and applied smoothing techniques for continuous variables. Post-cleaning, the clustering separation improved notably.</li>
+        <li><strong>Imbalanced Clusters:</strong> Although K-Means is unsupervised, imbalanced inputs caused some clusters to dominate. Preprocessing using SMOTE and undersampling allowed more diverse cluster formation and reduced centroid drift.</li>
+        <li><strong>Cluster Interpretation:</strong> K-Means doesn’t name clusters, so making sense of them required examining feature distributions and defining profiles. I created representative labels to increase explainability and business relevance.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="takeaways">
       <h2>Key Takeaways</h2>
+      <p>My key learnings from this artifact include:</p>
       <ul>
-        <li>Data quality (noise, completeness, balance) significantly impacts unsupervised learning outcomes.</li>
-        <li>Visualization and domain understanding are critical for validating clustering results.</li>
-        <li>Ethical considerations, especially around fairness and representation, must guide preprocessing and modeling decisions.</li>
-        <li>Refined understanding of practical techniques: Elbow vs. Silhouette, preprocessing pipelines, and scaling techniques.</li>
-        <li>Soft skills like critical thinking, scenario-based troubleshooting, and ethical reasoning are integral to successful AI practice.</li>
+        <li><strong>Scenario Handling:</strong> The guided exercises exposed me to practical problems like missing values, noise, and imbalance, often overlooked in textbooks. I learned to critically assess and preprocess data for robust analysis.</li>
+        <li><strong>Model Evaluation:</strong> I realized clustering isn’t just about code execution—it requires analytical thinking to evaluate clusters using domain knowledge and metrics like Silhouette Score.</li>
+        <li><strong>Importance of Data Quality:</strong> The same model trained on different quality data yields vastly different outcomes. Cleaning, transforming, and balancing data significantly influenced the results.</li>
+        <li><strong>Ethics in ML:</strong> The chatbot prompts made me reflect on bias, fairness, and representativeness. For instance, if one group dominates the data, the model may reinforce existing inequalities. ML systems must be designed consciously to prevent harm.</li>
+        <li><strong>Technical + Human Lens:</strong> This project improved both my Python/ML skills and my human-centric thinking. I now see data science as a blend of engineering, decision-making, and social responsibility.</li>
       </ul>
     </div>
 
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
-      <p>This project marked a turning point in my ML learning. While I had previously focused on model accuracy, this exercise reminded me that model development begins with understanding the data itself. The chatbot-based scenarios gave me insight into the real-life messiness of data and how AI professionals must be prepared to adapt techniques contextually.</p>
-      <p>In particular, I realized that clustering is both an art and a science. While metrics provide clues, human interpretation is key in assigning meaningful labels and understanding outcomes. I also appreciated how deeply ethical principles intersect with data science practices—bias mitigation is not an afterthought, but a foundational requirement.</p>
+      <p>This artifact deepened my understanding of how to translate theory into practice. Each chatbot scenario simulated real-world dilemmas, which trained me to apply problem-solving frameworks, not just algorithms. It made me comfortable thinking like a data scientist.</p>
+      <p>I appreciated how each step—from identifying missing data to validating clusters—demanded thoughtful decision-making. Often, there wasn’t a single right answer; trade-offs had to be managed. Should I drop rows or impute them? Should I use 2 or 4 clusters? These choices echoed real-life complexity.</p>
+      <p>It was especially impactful to confront bias and imbalance. I saw firsthand how skewed inputs can yield misleading results. AI ethics became not just a theory I studied but something I lived through this exercise. I now understand that fairness must be proactively designed and constantly evaluated.</p>
+      <p>I also grew as a reflective practitioner. Documenting and explaining each phase clarified my logic. Connecting clustering insights to business scenarios (e.g., customer segmentation) showed me how data science can directly drive strategy, policy, and user outcomes. These realizations will shape how I design models in the future—grounded not only in performance, but in ethics, clarity, and impact.</p>
     </div>
 
     <div class="tab-content" id="conclusion">
       <h2>Conclusion & Future Directions</h2>
-      <p>In conclusion, this artifact reflects both my technical competence in unsupervised learning and my evolving mindset as an AI practitioner. I have grown to value clean, balanced data and thoughtful scenario-based design more than just algorithmic performance. Going forward, I hope to deepen my skill in dimensionality reduction and alternative clustering algorithms, and explore their applications in educational and healthcare analytics.</p>
+      <p>This artifact stands as a comprehensive reflection of my progress as a machine learning practitioner. From technical implementation to ethical consideration, each section helped me become more capable and conscious. The blend of coding, scenario-based learning, and personal reflection makes this one of my most meaningful learning experiences.</p>
+      <p>Looking forward, I plan to extend this project by applying PCA before clustering to reduce dimensionality and enhance interpretability. I am also interested in comparing K-Means with DBSCAN and hierarchical clustering, and applying these techniques to real business problems in marketing, finance, or education. Finally, I want to keep building the habit of ethical reflection in every model I build—so that my work contributes to fair, effective, and inclusive AI systems.</p>
     </div>
   </div>
 
