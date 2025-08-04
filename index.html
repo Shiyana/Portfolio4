@@ -1,6 +1,5 @@
 from pathlib import Path
 
-# Full HTML content with enhanced sections, references, and real-time examples with popups
 full_html_code = """
 <!DOCTYPE html>
 <html lang="en">
@@ -25,29 +24,6 @@ full_html_code = """
     ul { margin-left: 20px; }
     svg { max-width: 50%; height: auto; }
     .reference { font-size: 0.8em; color: #666; margin-top: 10px; }
-    .popup {
-      position: fixed;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      z-index: 1000;
-      font-size: 1em;
-    }
-    .popup.top { top: 0; }
-    .popup.bottom { bottom: 0; }
-    .popup .close-btn {
-      position: absolute;
-      right: 10px;
-      top: 5px;
-      color: white;
-      cursor: pointer;
-      font-size: 1.2em;
-      border: none;
-      background: none;
-    }
-    .popup .close-btn:hover { color: #60a3bc; }
   </style>
   <script>
     function showTab(id) {
@@ -56,21 +32,10 @@ full_html_code = """
     }
     document.addEventListener('DOMContentLoaded', () => {
       showTab('overview');
-      // Close popup functionality
-      document.querySelectorAll('.close-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          this.parentElement.style.display = 'none';
-        });
-      });
     });
   </script>
 </head>
 <body>
-  <div class="popup top">
-    <span>Notice: This portfolio is for educational purposes only. Last updated: August 03, 2025.</span>
-    <button class="close-btn">&times;</button>
-  </div>
-
   <header>
     <h1>Artifact 4: Clustering Analysis with K-Means</h1>
     <p>Shiyana Jayanesan Shylaja | Machine Learning Portfolio 4</p>
@@ -207,11 +172,6 @@ full_html_code = """
         References: Amazon (2025). Data Strategy; UNHCR (2025). Tech for Good; NIH (2025). Genomic Research.
       </div>
     </div>
-  </div>
-
-  <div class="popup bottom">
-    <span>Contact me at shiyana@example.com for feedback or collaboration. Portfolio version 1.0.</span>
-    <button class="close-btn">&times;</button>
   </div>
 
   <footer>
