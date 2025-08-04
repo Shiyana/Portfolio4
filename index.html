@@ -10,7 +10,9 @@ full_html_code = """
   <title>Artifact 4: Clustering Analysis with K-Means</title>
   <style>
     body { font-family: Arial, sans-serif; background-color: #f4f8fb; color: #333; margin: 0; padding: 0; }
-    header, footer { background-color: #1e3799; color: white; text-align: center; padding: 20px; }
+    header, footer { background-color: #1e3799; color: white; text-align: center; padding: 10px; } /* Reduced padding for compact header */
+    header h1 { font-size: 1.5em; margin: 0; } /* Reduced font size for compactness */
+    header p { font-size: 0.9em; margin: 0; } /* Adjusted font size for subtitle */
     .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
     h1, h2, h3 { color: #1e3799; }
     .tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
@@ -18,10 +20,10 @@ full_html_code = """
     .tabs button:hover { background: #60a3bc; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
-    .charts img { max-width: 90%; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; }
+    .charts img { max-width: 50%; margin: 10px auto; display: block; border: 1px solid #ccc; border-radius: 5px; } /* Medium size for diagrams */
     a { color: #ffffff; text-decoration: underline; }
     ul { margin-left: 20px; }
-    svg { max-width: 90%; height: auto; }
+    svg { max-width: 50%; height: auto; } /* Medium size for SVG if used */
   </style>
   <script>
     function showTab(id) {
@@ -36,7 +38,7 @@ full_html_code = """
 <body>
   <header>
     <h1>Artifact 4: Clustering Analysis with K-Means</h1>
-    <p>Shiyana Jayanesan Shylaja | Machine Learning Portfolio</p>
+    <p>Shiyana Jayanesan Shylaja | Machine Learning Portfolio 4</p>
   </header>
 
   <div class="container">
@@ -52,7 +54,13 @@ full_html_code = """
     <div class="tab-content" id="overview">
       <h2>Overview</h2>
       <p>
-        This artifact applies unsupervised learning through K-Means clustering to segment a retail customer dataset based on income and spending scores, facilitating targeted marketing strategies. Influenced by the "Navigating Human Bias as a Leader in AI and Education" class activity, I prioritized ethical leadership and fairness, exploring real-world data challenges through a structured chatbot-guided exercise. The exercise comprised three detailed scenarios: (1) **Missing Data**, where I addressed incomplete health study data (e.g., missing age and weight) using median imputation and multiple imputation with IterativeImputer from Scikit-learn, analyzing how missingness could bias results for underrepresented groups like low-income patients, a concern echoed in healthcare AI audits; (2) **Noisy Data**, involving noisy sensor readings smoothed with moving averages and z-score filtering, assessing how noise might distort fair customer segmentation in e-commerce analytics; and (3) **Imbalanced Datasets**, where I applied SMOTE and class weighting to predict rare diseases, ensuring models didn’t overlook minority populations, a practice relevant to inclusive marketing campaigns. These scenarios, executed with Python (e.g., pandas, Scikit-learn), enhanced my technical and ethical proficiency. Visual aids, such as the overview diagram, illustrate the workflow and segmentation outcomes.
+        This artifact applies unsupervised learning through K-Means clustering to segment a retail customer dataset based on income and spending scores, facilitating targeted marketing strategies. Influenced by the "Navigating Human Bias as a Leader in AI and Education" class activity, I prioritized ethical leadership and fairness, exploring real-world data challenges through a structured chatbot-guided exercise. The exercise comprised three detailed scenarios:
+        <ul class="list-disc ml-6 mt-2">
+          <li><strong>Scenario 1: Missing Data</strong> - Addressed incomplete health study data (e.g., missing age and weight) using median imputation and multiple imputation with IterativeImputer from Scikit-learn. Analyzed how missingness could bias results for underrepresented groups like low-income patients, a concern echoed in healthcare AI audits, and implemented missingness flags to track impacts.</li>
+          <li><strong>Scenario 2: Noisy Data</strong> - Involved noisy sensor readings smoothed with moving averages and z-score filtering, assessing how noise might distort fair customer segmentation in e-commerce analytics. Explored the trade-off between data smoothing and retaining meaningful variability.</li>
+          <li><strong>Scenario 3: Imbalanced Datasets</strong> - Applied SMOTE and class weighting to predict rare diseases, ensuring models didn’t overlook minority populations, a practice relevant to inclusive marketing campaigns. Evaluated synthetic sample generation’s effect on model performance.</li>
+        </ul>
+        These scenarios, executed with Python (e.g., pandas, Scikit-learn), enhanced my technical and ethical proficiency. Visual aids, such as the overview diagram, illustrate the workflow and segmentation outcomes.
       </p>
       <div class="mt-4">
         <h3>Overview Diagram</h3>
@@ -105,6 +113,8 @@ full_html_code = """
           <li>Explaining cluster results to non-technical stakeholders, like family, required simplifying ethical implications, a skill tested during discussions about AI in healthcare.</li>
           <li>Handling computational limits during K-Means on a 2000-entry dataset extended my work hours, reflecting challenges in large-scale cloud-based analytics for e-commerce firms.</li>
           <li>Addressing data privacy concerns, such as anonymizing customer income, added complexity, paralleling GDPR compliance issues in European marketing campaigns.</li>
+          <li>Dealing with inconsistent data formats from multiple retail sources mimicked real-world issues in supply chain analytics, requiring custom preprocessing scripts.</li>
+          <li>Managing stakeholder expectations for immediate results, similar to pressures in fast-paced retail sales forecasting, pushed me to optimize my workflow under tight deadlines.</li>
         </ul>
       </p>
     </div>
@@ -120,6 +130,7 @@ full_html_code = """
           <li>SMOTE and imbalance handling inspire fairness advocacy in study groups, paralleling efforts to balance representation in online ad targeting.</li>
           <li>Iterative refinement of K-Means taught validation skills, applicable to optimizing machine learning models in autonomous vehicle development.</li>
           <li>Collaborative problem-solving with peers improved my teamwork, reflecting real-world AI development in cross-functional teams at Google.</li>
+          <li>Adapting to computational constraints enhanced my optimization skills, a practice useful in scaling AI models for large-scale social media analysis.</li>
         </ul>
       </p>
     </div>
@@ -127,7 +138,7 @@ full_html_code = """
     <div class="tab-content" id="reflection">
       <h2>Reflection</h2>
       <p>
-        This artifact deepened my expertise in data preprocessing and ethical AI leadership, shaped by the "Navigating Human Bias" class. I mastered imputation for missing data, noise reduction with smoothing, and imbalance correction with SMOTE, skills honed through chatbot scenarios. In practice, I advocate for transparency in team projects, auditing datasets for underrepresented groups daily, much like ensuring fairness in loan approval algorithms. My goal was to excel in clustering while upholding ethics, achieved by integrating Shiyana’s feedback loops and scenario insights (e.g., Python code, metrics). The artifact produced four customer segments with enhanced fairness, validated iteratively. Chatbot feedback drove deeper exploration into MNAR data and tuning, documented for clarity, similar to refining models for climate prediction. This work reflects my growth in AI/ML and leadership, preparing me for roles in ethical tech, such as designing inclusive AI for global health initiatives.
+        This artifact deepened my expertise in data preprocessing and ethical AI leadership, shaped by the "Navigating Human Bias" class. I mastered imputation for missing data, noise reduction with smoothing, and imbalance correction with SMOTE, skills honed through chatbot scenarios. In practice, I advocate for transparency in team projects, auditing datasets for underrepresented groups daily, much like ensuring fairness in loan approval algorithms. My goal was to excel in clustering while upholding ethics, achieved by integrating Shiyana’s feedback loops and scenario insights (e.g., Python code, metrics). The artifact produced four customer segments with enhanced fairness, validated iteratively. Chatbot feedback drove deeper exploration into MNAR data and tuning, documented for clarity, similar to refining models for climate prediction. Real-world applications, such as ethical AI in public policy, motivate me to pursue certifications in responsible AI, preparing me for leadership roles in global tech firms.
       </p>
     </div>
 
